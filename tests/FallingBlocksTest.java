@@ -65,34 +65,32 @@
 */
 
 /*
-    public class When_a_block_reaches_the_bottom {
+    module("When a block reaches the bottom", {
+      setup: function() {
+        //fall to last row 
+        board.drop(new Block('X'));
+        board.tick();
+        board.tick();
+      }
+    }); 
 
-        @Before
-        public void fallToLastRow() {
-            board.drop(new Block('X'));
-            board.tick();
-            board.tick();
-        }
-
-        @Test
-        public void it_is_still_falling_on_the_last_row() {
-            assertEquals("" +
+        test("it is still falling on the last row", function() {
+            equals("" +
                     "...\n" +
                     "...\n" +
                     ".X.\n", board.toString());
-            assertTrue("the player should still be able to move the block", board.hasFalling());
-        }
+            ok(board.hasFalling(), "the player should still be able to move the block");
+        });
 
-//        @Test
-//        public void it_stops_when_it_hits_the_bottom() {
+//        test("it stops when it hits the bottom", function() {
 //            board.tick();
-//            assertEquals("" +
+//            equals("" +
 //                    "...\n" +
 //                    "...\n" +
 //                    ".X.\n", board.toString());
-//            assertFalse("the block should stop moving", board.hasFalling());
-//        }
-    }
+//            !ok(board.hasFalling(), "the block should stop moving");
+//        });
+   
 */
 
 /*
