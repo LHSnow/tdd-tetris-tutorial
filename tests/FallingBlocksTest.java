@@ -18,7 +18,7 @@
       });
 
 //        test("has no falling blocks" {
-//            !ok(board.hasFalling());
+//            ok(!board.hasFalling());
 //        }
   
 /*
@@ -74,7 +74,7 @@
     }); 
 
         test("it is still falling on the last row", function() {
-            equals("" +
+            equal("" +
                     "...\n" +
                     "...\n" +
                     ".X.\n", board.toString());
@@ -83,20 +83,18 @@
 
 //        test("it stops when it hits the bottom", function() {
 //            board.tick();
-//            equals("" +
+//            equal("" +
 //                    "...\n" +
 //                    "...\n" +
 //                    ".X.\n", board.toString());
-//            !ok(board.hasFalling(), "the block should stop moving");
+//            ok(!board.hasFalling(), "the block should stop moving");
 //        });
    
 */
 
 /*
-    public class When_a_block_lands_on_another_block {
-
-        @Before
-        public void landOnAnother() {
+    module("When a block lands on another block", {
+        setup: function() {
             board.drop(new Block('X'));
             board.tick();
             board.tick();
@@ -109,26 +107,25 @@
 
             board.drop(new Block('Y'));
             board.tick();
-        }
+        });
+        
 
-        @Test
-        public void it_is_still_falling_right_above_the_other_block() {
-            assertEquals("" +
+        test("it is still falling right above the other block", function() {
+            equal("" +
                     "...\n" +
                     ".Y.\n" +
                     ".X.\n", board.toString());
-            assertTrue("the player should still be able to avoid landing on the other block", board.hasFalling());
-        }
+            ok(board.hasFalling(), "the player should still be able to avoid landing on the other block");
+        });
 
-//        @Test
-//        public void it_stops_when_it_hits_the_other_block() {
+//        test("it stops when it hits the other block", function() {
 //            board.tick();
-//            assertEquals("" +
+//            equal("" +
 //                    "...\n" +
 //                    ".Y.\n" +
 //                    ".X.\n", board.toString());
-//            assertFalse("the block should stop moving when it lands on the other block", board.hasFalling());
-//        }
-    }
+//            ok(!board.hasFalling(), "the block should stop moving when it lands on the other block");
+//        })
+    
 */
 }
