@@ -5,18 +5,17 @@
 /**
  * @author Esko Luontola
  */
-    private final Board board = new Board(3, 3);
+    var board = new Board(3, 3);
 
 
-    public class A_new_board {
+    module("A_new_board");
 
-        @Test
-        public void is_empty() {
-            assertEquals("" +
+      test( "is empty", function() {
+        equal( "" +
                     "...\n" +
                     "...\n" +
-                    "...\n", board.toString());
-        }
+                    "...\n", board.toString() );
+      });
 
 //        @Test
 //        public void has_no_falling_blocks() {
