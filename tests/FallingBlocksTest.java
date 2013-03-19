@@ -20,8 +20,7 @@
 //        test("has no falling blocks" {
 //            !ok(board.hasFalling());
 //        }
-    }
-
+  
 /*
     module("When a block is dropped", {
       setup: function() {
