@@ -1,20 +1,28 @@
 function Board(width, height) {
-  this.line = new Array(height);
+  this.coord = new Array(height);
   for (var i = 0; i < height; i++) {
-    line[i] = new Array(width);
+    coord[i] = new Array(width);
   }
   
-  this.fallingBlock = false;
+  this.falling = false;
 }
 
 Board.prototype.toString = function() {
-  for(var i = 0; i < line.length; i++) {
-    
+  var board = "";
+  for(var i = 0; i < this.coord.length; i++) {
+    for(var j = 0; j < this.coord[i].length; j++) {
+      if(coord[i][j] == undefined) {
+        board = board + ".";    
+      } else {
+        board = board + coord[i][j];
+      }
+    }
+    board = board + "\n";
   }
 }
 
 Board.prototype.hasFalling = function() {
-  
+  return this.falling;
 }
 
 Board.prototype.drop = function() {
