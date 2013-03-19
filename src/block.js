@@ -3,5 +3,5 @@ function Block(type) {
 }
 
 Block.prototype.toString = function() {
-  return this + '';
+  return this.type + '';
 }

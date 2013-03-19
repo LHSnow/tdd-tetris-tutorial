@@ -26,8 +26,10 @@ Board.prototype.hasFalling = function() {
   return this.falling;
 }
 
-Board.prototype.drop = function() {
-  
+Board.prototype.drop = function(block) {
+  this.falling = true;
+  var middle = Math.floor(this.coord[0].length / 2);
+  this.coord[0][middle] = block;
 }
 
 Board.prototype.tick = function() {

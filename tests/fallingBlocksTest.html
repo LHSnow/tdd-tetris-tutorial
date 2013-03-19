@@ -24,11 +24,14 @@
 <script src="../src/block.js"></script>
 <script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
 <script>
- 
-var board = new Board(3, 3);
 
+var board;
 
-module("A new board");
+module("A new board", {
+  setup: function() {
+    board = new Board(3,3);
+  }
+});
 
 test("is empty", function() {
   equal(board.toString(), "" +
@@ -44,6 +47,7 @@ test("has no falling blocks", function() {
 
 module("When a block is dropped", {
   setup: function() {
+    board = new Board(3,3);
     board.drop(new Block('X'))
   }
 });
@@ -86,6 +90,7 @@ test("at most one block may be falling at a time", function() {
 
 module("When a block reaches the bottom", {
   setup: function() {
+    board = new Board(3,3);
     //fall to last row 
     board.drop(new Block('X'));
     board.tick();
@@ -115,6 +120,7 @@ test("it stops when it hits the bottom", function() {
 
 module("When a block lands on another block", {
   setup: function() {
+    board = new Board(3,3);
     board.drop(new Block('X'));
     board.tick();
     board.tick();
