@@ -37,7 +37,7 @@ test("is empty", function() {
 
 test("has no falling blocks" {
   ok(!board.hasFalling());
-}
+});
 
 
 module("When a block is dropped", {
