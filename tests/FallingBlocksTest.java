@@ -1,10 +1,28 @@
-// Copyright (c) 2008-2012  Esko Luontola <www.orfjackal.net>
-// You may use and modify this source code freely for personal non-commercial use.
-// This source code may NOT be used as course material without prior written agreement.
+<!DOCTYPE html>
 
-/**
- * @author Lars Bergström <harhund.com>, derivative of the works of Esko Luontola <www.orfjackal.net>
- */
+<!--
+  Copyright (c) 2008-2012  Esko Luontola <www.orfjackal.net> and Lars Bergström <harhund.com>
+  You may use and modify this source code freely for personal non-commercial use.
+  This source code may NOT be used as course material without prior written agreement.
+
+  @author Esko Luontola <www.orfjackal.net> (original Java/junit examples)
+  @author Lars Bergström <harhund.com> (adaptation to Javascript/qunit)
+-->
+ 
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Falling blocks test</title>
+  <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.11.0.css">
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+</body>
+
+<script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
+<script>
+ 
 var board = new Board(3, 3);
 
 
@@ -126,5 +144,7 @@ test("it stops when it hits the other block", function() {
            ".Y.\n" +
             ".X.\n", board.toString());
     ok(!board.hasFalling(), "the block should stop moving when it lands on the other block");
-})
+});
 
+</script>
+</html> 
