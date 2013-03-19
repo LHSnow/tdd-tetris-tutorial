@@ -20,6 +20,8 @@
   <div id="qunit-fixture"></div>
 </body>
 
+<script src="../board.js"></script>
+<script src="../block.js"></script>
 <script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
 <script>
  
@@ -117,11 +119,11 @@ module("When a block lands on another block", {
     board.tick();
     board.tick();
     board.tick();
-    assertEquals("" +
+    equal("" +
             "...\n" +
             "...\n" +
             ".X.\n", board.toString());
-    assertFalse(board.hasFalling());
+    ok(!board.hasFalling());
 
     board.drop(new Block('Y'));
     board.tick();
