@@ -3,7 +3,7 @@
 // This source code may NOT be used as course material without prior written agreement.
 
 /**
- * @author Esko Luontola
+ * @author Lars Bergström <harhund.com>, derivative of the works of Esko Luontola <www.orfjackal.net>
  */
     var board = new Board(3, 3);
 
