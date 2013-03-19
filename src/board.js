@@ -14,11 +14,12 @@ Board.prototype.toString = function() {
       if(coord[i][j] == undefined) {
         board = board + ".";    
       } else {
-        board = board + coord[i][j];
+        board = board + this.coord[i][j];
       }
     }
     board = board + "\n";
   }
+  return board;
 }
 
 Board.prototype.hasFalling = function() {

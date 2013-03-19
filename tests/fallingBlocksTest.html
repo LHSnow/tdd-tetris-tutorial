@@ -20,15 +20,15 @@
   <div id="qunit-fixture"></div>
 </body>
 
-<script src="../board.js"></script>
-<script src="../block.js"></script>
+<script src="../src/board.js"></script>
+<script src="../src/block.js"></script>
 <script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
 <script>
  
 var board = new Board(3, 3);
 
 
-module("A_new_board");
+module("A new board");
 
 test("is empty", function() {
   equal( "" +
@@ -37,7 +37,7 @@ test("is empty", function() {
         "...\n", board.toString() );
 });
 
-test("has no falling blocks" {
+test("has no falling blocks", function() {
   ok(!board.hasFalling());
 });
 
