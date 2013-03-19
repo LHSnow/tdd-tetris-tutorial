@@ -2,18 +2,9 @@
 // You may use and modify this source code freely for personal non-commercial use.
 // This source code may NOT be used as course material without prior written agreement.
 
-package tetris;
-
-import net.orfjackal.nestedjunit.NestedJUnit;
-import org.junit.*;
-import org.junit.runner.RunWith;
-
 /**
  * @author Esko Luontola
  */
-@RunWith(NestedJUnit.class)
-public class FallingBlocksTest extends Assert {
-
     private final Board board = new Board(3, 3);
 
 
