@@ -30,30 +30,26 @@
     });
 
     
-        @Test
-        public void the_block_is_falling() {
-            assertTrue(board.hasFalling());
-        }
+        test("the block is falling", function() {
+            ok(board.hasFalling());
+        });
 
-//        @Test
-//        public void it_starts_from_the_top_middle() {
-//            assertEquals("" +
+//        test("it starts from the top middle", function() {
+//            equals("" +
 //                    ".X.\n" +
 //                    "...\n" +
 //                    "...\n", board.toString());
-//        }
+//        });
 
-//        @Test
-//        public void it_moves_down_one_row_per_tick() {
+//        test("it moves down one row per tick", function() {
 //            board.tick();
 //            assertEquals("" +
 //                    "...\n" +
 //                    ".X.\n" +
 //                    "...\n", board.toString());
-//        }
+//        });
 
-//        @Test
-//        public void at_most_one_block_may_be_falling_at_a_time() {
+//        test("at most one block may be falling at a time", function() {
 //            try {
 //                board.drop(new Block('Y'));
 //                fail();
@@ -64,8 +60,8 @@
 //                    ".X.\n" +
 //                    "...\n" +
 //                    "...\n", board.toString());
-//        }
-    }
+//        });
+    
 */
 
 /*
