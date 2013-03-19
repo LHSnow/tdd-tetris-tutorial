@@ -31,10 +31,10 @@ var board = new Board(3, 3);
 module("A new board");
 
 test("is empty", function() {
-  equal( "" +
+  equal(board.toString(), "" +
         "...\n" +
         "...\n" +
-        "...\n", board.toString() );
+        "...\n" );
 });
 
 test("has no falling blocks", function() {
@@ -54,18 +54,18 @@ test("the block is falling", function() {
 });
 
 test("it starts from the top middle", function() {
-    equals("" +
+    equal(board.toString(), "" +
             ".X.\n" +
             "...\n" +
-            "...\n", board.toString());
+            "...\n");
 });
 
 test("it moves down one row per tick", function() {
     board.tick();
-    assertEquals("" +
+    equal(board.toString(), "" +
             "...\n" +
             ".X.\n" +
-            "...\n", board.toString());
+            "...\n");
 });
 /*
 test("at most one block may be falling at a time", function() {
@@ -94,19 +94,19 @@ module("When a block reaches the bottom", {
 }); 
 
 test("it is still falling on the last row", function() {
-    equal("" +
+    equal(board.toString(), "" +
             "...\n" +
             "...\n" +
-            ".X.\n", board.toString());
+            ".X.\n");
     ok(board.hasFalling(), "the player should still be able to move the block");
 });
 
 test("it stops when it hits the bottom", function() {
     board.tick();
-    equal("" +
+    equal(board.toString(), "" +
             "...\n" +
             "...\n" +
-            ".X.\n", board.toString());
+            ".X.\n");
     ok(!board.hasFalling(), "the block should stop moving");
 });
 
@@ -119,10 +119,10 @@ module("When a block lands on another block", {
     board.tick();
     board.tick();
     board.tick();
-    equal("" +
+    equal(board.toString(), "" +
             "...\n" +
             "...\n" +
-            ".X.\n", board.toString());
+            ".X.\n");
     ok(!board.hasFalling());
 
     board.drop(new Block('Y'));
@@ -132,19 +132,19 @@ module("When a block lands on another block", {
 
 
 test("it is still falling right above the other block", function() {
-    equal("" +
+    equal(board.toString(), "" +
             "...\n" +
             ".Y.\n" +
-            ".X.\n", board.toString());
+            ".X.\n");
     ok(board.hasFalling(), "the player should still be able to avoid landing on the other block");
 });
 
 test("it stops when it hits the other block", function() {
     board.tick();
-    equal("" +
+    equal(board.toString(), "" +
             "...\n" +
            ".Y.\n" +
-            ".X.\n", board.toString());
+            ".X.\n");
     ok(!board.hasFalling(), "the block should stop moving when it lands on the other block");
 });
 
