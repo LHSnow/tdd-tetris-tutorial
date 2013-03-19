@@ -10,27 +10,26 @@
 
     module("A_new_board");
 
-      test( "is empty", function() {
+      test("is empty", function() {
         equal( "" +
                     "...\n" +
                     "...\n" +
                     "...\n", board.toString() );
       });
 
-//        @Test
-//        public void has_no_falling_blocks() {
-//            assertFalse(board.hasFalling());
+//        test("has no falling blocks" {
+//            !ok(board.hasFalling());
 //        }
     }
 
 /*
-    public class When_a_block_is_dropped {
+    module("When a block is dropped", {
+      setup: function() {
+        board.drop(new Block('X'))
+      }
+    });
 
-        @Before
-        public void dropBlock() {
-            board.drop(new Block('X'));
-        }
-
+    
         @Test
         public void the_block_is_falling() {
             assertTrue(board.hasFalling());
