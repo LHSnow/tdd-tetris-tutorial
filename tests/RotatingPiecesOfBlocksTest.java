@@ -1,19 +1,29 @@
-// Copyright (c) 2008-2012  Esko Luontola <www.orfjackal.net>
-// You may use and modify this source code freely for personal non-commercial use.
-// This source code may NOT be used as course material without prior written agreement.
+<!DOCTYPE html>
 
-package tetris;
+<!--
+  Copyright (c) 2008-2012  Esko Luontola <www.orfjackal.net> and Lars Bergström <harhund.com>
+  You may use and modify this source code freely for personal non-commercial use.
+  This source code may NOT be used as course material without prior written agreement.
 
-import net.orfjackal.nestedjunit.NestedJUnit;
-import org.junit.*;
-import org.junit.runner.RunWith;
+  @author Esko Luontola <www.orfjackal.net> (original Java/junit examples)
+  @author Lars Bergström <harhund.com> (adaptation to Javascript/qunit)
+-->
+ 
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Falling blocks test</title>
+  <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.11.0.css">
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+</body>
 
-/**
- * @author Esko Luontola
- */
-@Ignore("contains no test") // TODO: uncomment me when you start doing these tests
-@RunWith(NestedJUnit.class)
-public class RotatingPiecesOfBlocksTest extends Assert {
+<script src="../src/board.js"></script>
+<script src="../src/block.js"></script>
+<script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
+<script>
 
 /*
     private Piece piece;
@@ -104,3 +114,6 @@ public class RotatingPiecesOfBlocksTest extends Assert {
     }
 */
 }
+
+</script>
+</html> 
