@@ -38,5 +38,15 @@ Piece.prototype.rotateRight = function() {
 }
 
 Piece.prototype.rotateLeft = function() {
+  var n = this.width;
+  var rot = new Array(this.width);
+  for(var y = 0; y < n; y++) {
+    rot[y] = new Array(n);
+    for(var x = 0; x < n; x++) {
+      rot[y][x] = this.matrix[x][n - y - 1];
+    }
+  }
+  this.matrix = rot;
+  
   return this;
 }
