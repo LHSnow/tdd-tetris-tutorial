@@ -14,6 +14,10 @@ function Tetromino(shape) {
                     "....\n" +
                     "....\n"); 
                     break;
+    case "O" : this.piece = new Piece("" +
+                    "OO\n" +
+                    "OO\n");
+                    break;
   }
 }
 

@@ -166,37 +166,33 @@ test("rotating it 4 times right will bring back the original shape", function() 
   equal(shape.toString(), originalShape);
 });
 
-/*
-    public class The_O_shape {
 
-        setup:         public void createOShape() {
-            shape = Tetromino.O_SHAPE;
-        }
+module("The O shape", {
+  setup: function() {
+    shape = new Tetromino("O");
+  }
+});
 
-        test("        public void is_shaped_like_O() {
-            equal("" +
-                    ".OO\n" +
-                    ".OO\n" +
-                    "...\n", shape.toString());
-        }
+test("is shaped like O", function() {
+  equal(shape.toString(), "" +
+          "OO\n" +
+          "OO\n");
+});
 
-//        test("//        public void can_not_be_rotated_right() {
-//            shape = shape.rotateRight();
-//            equal("" +
-//                    ".OO\n" +
-//                    ".OO\n" +
-//                    "...\n", shape.toString());
-//        }
+test("can not be rotated right", function() {
+  shape = shape.rotateRight();
+  equal(shape.toString(), "" +
+          "OO\n" +
+          "OO\n");
+});
 
-//        test("//        public void can_not_be_rotated_left() {
-//            shape = shape.rotateLeft();
-//            equal("" +
-//                    ".OO\n" +
-//                    ".OO\n" +
-//                    "...\n", shape.toString());
-//        }
-    }
-*/
+test("can not be rotated left", function() {
+  shape = shape.rotateLeft();
+  equal(shape.toString(), "" +
+          "OO\n" +
+          "OO\n");
+});
+
 
 </script>
 </html> 
