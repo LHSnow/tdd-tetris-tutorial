@@ -12,7 +12,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Falling blocks test</title>
+  <title>Rotating pieces of blocks test</title>
   <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.11.0.css">
 </head>
 <body>
@@ -25,27 +25,24 @@
 <script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
 <script>
 
-/*
-    private Piece piece;
+var piece;
 
+module("A piece of 3x3 blocks", {
 
-    public class A_piece_of_3x3_blocks {
+  setup: function() {
+    piece = new Piece("" +
+              ".X.\n" +
+              ".X.\n" +
+              "...\n");
+  }
+}
 
-        @Before
-        public void createPiece() {
-            piece = new Piece("" +
-                    ".X.\n" +
-                    ".X.\n" +
-                    "...\n");
-        }
-
-        @Test
-        public void consists_of_many_blocks() {
-            assertEquals("" +
-                    ".X.\n" +
-                    ".X.\n" +
-                    "...\n", piece.toString());
-        }
+test("consists of many blocks", function() {
+  assertEquals(piece.toString(), "" +
+          ".X.\n" +
+          ".X.\n" +
+          "...\n");
+}
 
 //        @Test
 //        public void can_be_rotated_right() {
