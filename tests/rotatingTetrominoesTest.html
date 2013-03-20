@@ -97,53 +97,74 @@ test("can be rotated left 3 times", function() {
 test("rotating it 4 times will go back to the original shape", function() {
   var originalShape = shape.toString();
   shape = shape.rotateRight().rotateRight().rotateRight().rotateRight();
-  equal(originalShape, shape.toString());
+  equal(shape.toString(), originalShape);
   shape = shape.rotateLeft().rotateLeft().rotateLeft().rotateLeft();
-  equal(originalShape, shape.toString());
+  equal(shape.toString(), originalShape);
 });
 
 module("The I shape", {
   setup: function() {
-    shape = Tetromino.I_SHAPE;
+    shape = new Tetromino("I");
   }
 });
 
 test("is shaped like I", function() {
   equal(shape.toString(), "" +
-          ".....\n" +
-          ".....\n" +
-          "IIII.\n" +
-          ".....\n" +
-          ".....\n");
+          "....\n" +
+          "IIII\n" +
+          "....\n" +
+          "....\n");
 });
 
 test("can be rotated right once", function() {
   shape = shape.rotateRight();
   equal(shape.toString(), "" +
-          ".....\n" +
-          "..I..\n" +
-          "..I..\n" +
-          "..I..\n" +
-          "..I..\n");
+          "..I.\n" +
+          "..I.\n" +
+          "..I.\n" +
+          "..I.\n");
 });
 
-//        test("//        public void can_be_rotated_left_once() {
-//            shape = shape.rotateLeft();
-//            equal(shape.toString(), "" +
-//                    ".....\n" +
-//                    "..I..\n" +
-//                    "..I..\n" +
-//                    "..I..\n" +
-//                    "..I..\n");
-//        }
+test("can be rotated left once", function() {
+  shape = shape.rotateLeft();
+  equal(shape.toString(), "" +
+          ".I..\n" +
+          ".I..\n" +
+          ".I..\n" +
+          ".I..\n");
+});
 
-//        test("//        public void rotating_it_twice_will_get_back_to_the_original_shape() {
-//            String originalShape = shape.toString();
-//            shape = shape.rotateRight().rotateRight();
-//            equal(originalShape, shape.toString());
-//            shape = shape.rotateLeft().rotateLeft();
-//            equal(originalShape, shape.toString());
-//        }
+test("rotating it twice left will drop it down one line", function() {
+  var expectedShape = "" +
+          "....\n" +
+          "....\n" +
+          "IIII\n" +
+          "....\n";
+  shape = shape.rotateLeft().rotateLeft();
+  equal(shape.toString(), expectedShape);
+});
+
+test("rotating it twice right will drop it down one line", function() {
+  var expectedShape = "" +
+          "....\n" +
+          "....\n" +
+          "IIII\n" +
+          "....\n";
+  shape = shape.rotateRight().rotateRight();
+  equal(shape.toString(), expectedShape);
+});
+
+test("rotating it 4 times left will bring back the original shape", function() {
+  var originalShape = shape.toString();
+  shape = shape.rotateLeft().rotateLeft().rotateLeft().rotateLeft();
+  equal(shape.toString(), originalShape);
+});
+
+test("rotating it 4 times right will bring back the original shape", function() {
+  var originalShape = shape.toString();
+  shape = shape.rotateRight().rotateRight().rotateRight().rotateRight();
+  equal(shape.toString(), originalShape);
+});
 
 /*
     public class The_O_shape {

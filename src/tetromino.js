@@ -6,7 +6,14 @@ function Tetromino(shape) {
     case "T" : this.piece = new Piece("" +
                     ".T.\n" +
                     "TTT\n" +
-                    "...\n");
+                    "...\n"); 
+                    break;
+    case "I" : this.piece = new Piece("" +
+                    "....\n" +
+                    "IIII\n" +
+                    "....\n" +
+                    "....\n"); 
+                    break;
   }
 }
 
