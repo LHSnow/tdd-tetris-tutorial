@@ -32,8 +32,13 @@ Board.prototype.hasFalling = function() {
 }
 
 Board.prototype.drop = function(block) {
+  //at most one block may be falling at the same time
+  if(this.falling) {
+    throw "already falling";
+  }
   this.falling = block;
   this.blocks.push(block);
+  //find horizontal centre of board
   var x = Math.floor(this.width / 2);
   block.xpos = x;
   block.ypos = 0;
