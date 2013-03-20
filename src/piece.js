@@ -6,3 +6,11 @@ function Piece(charMatrix) {
 Piece.prototype.toString = function() {
   return this.arr.join("");
 }
+
+Piece.prototype.rotateLeft = function() {
+  return this;
+}
+
+Piece.prototype.rotateRight = function() {
+  return this;
+}

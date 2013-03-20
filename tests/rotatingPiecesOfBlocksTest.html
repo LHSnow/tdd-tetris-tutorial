@@ -42,23 +42,21 @@ test("consists of many blocks", function() {
           "...\n");
 });
 
-//        @Test
-//        public void can_be_rotated_right() {
-//            piece = piece.rotateRight();
-//            assertEquals("" +
-//                    "...\n" +
-//                    ".XX\n" +
-//                    "...\n", piece.toString());
-//        }
+test("can be rotated right", function() {
+  piece = piece.rotateRight();
+  equal(piece.toString(), "" +
+    "...\n" +
+    ".XX\n" +
+    "...\n");
+});
 
-//        @Test
-//        public void can_be_rotated_left() {
-//            piece = piece.rotateLeft();
-//            assertEquals("" +
-//                    "...\n" +
-//                    "XX.\n" +
-//                    "...\n", piece.toString());
-//        }
+test("can be rotated left", function() {
+  piece = piece.rotateLeft();
+  equal(piece.toString(), "" +
+    "...\n" +
+    "XX.\n" +
+    "...\n");
+});
 
 
 /*
