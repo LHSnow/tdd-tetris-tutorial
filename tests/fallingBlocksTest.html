@@ -71,20 +71,19 @@ test("it moves down one row per tick", function() {
             ".X.\n" +
             "...\n");
 });
-/*
+
 test("at most one block may be falling at a time", function() {
     try {
         board.drop(new Block('Y'));
-        fail();
-    } catch (IllegalStateException e) {
-        assertTrue(e.getMessage().contains("already falling"));
+        ok(false, "exception expected");
+    } catch (e) {
+        ok(e.indexOf("already falling") !== -1);
     }
-    assertEquals("" +
+    equal(board.toString(), "" +
             ".X.\n" +
             "...\n" +
-            "...\n", board.toString());
+            "...\n");
 });
-*/    
 
 
 
