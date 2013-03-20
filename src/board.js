@@ -40,7 +40,8 @@ Board.prototype.drop = function(block) {
 }
 
 Board.prototype.tick = function() {
-  if(this.falling.ypos < this.height) {
+  //compare to height - 1 as array is 0-indexed
+  if(this.falling.ypos < (this.height -1)) {
     this.falling.ypos++;
   } else { 
     this.falling = undefined;
