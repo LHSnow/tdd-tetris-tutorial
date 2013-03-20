@@ -76,33 +76,31 @@ test("can be rotated right 3 times", function() {
           ".T.\n");
 });
 
-//        @Test
-//        public void can_be_rotated_left_3_times() {
-//            shape = shape.rotateLeft();
-//            assertEquals("" +
-//                    ".T.\n" +
-//                    "TT.\n" +
-//                    ".T.\n", shape.toString());
-//            shape = shape.rotateLeft();
-//            assertEquals("" +
-//                    "...\n" +
-//                    "TTT\n" +
-//                    ".T.\n", shape.toString());
-//            shape = shape.rotateLeft();
-//            assertEquals("" +
-//                    ".T.\n" +
-//                    ".TT\n" +
-//                    ".T.\n", shape.toString());
-//        }
+test("can be rotated left 3 times", function() {
+  shape = shape.rotateLeft();
+  equal(shape.toString(), "" +
+          ".T.\n" +
+          "TT.\n" +
+          ".T.\n");
+  shape = shape.rotateLeft();
+  equal(shape.toString(), "" +
+          "...\n" +
+          "TTT\n" +
+          ".T.\n");
+  shape = shape.rotateLeft();
+  equal(shape.toString(), "" +
+          ".T.\n" +
+          ".TT\n" +
+          ".T.\n");
+});
 
-//        @Test
-//        public void rotating_it_4_times_will_go_back_to_the_original_shape() {
-//            String originalShape = shape.toString();
-//            shape = shape.rotateRight().rotateRight().rotateRight().rotateRight();
-//            assertEquals(originalShape, shape.toString());
-//            shape = shape.rotateLeft().rotateLeft().rotateLeft().rotateLeft();
-//            assertEquals(originalShape, shape.toString());
-//        }
+test("rotating it 4 times will go back to the original shape", function() {
+  var originalShape = shape.toString();
+  shape = shape.rotateRight().rotateRight().rotateRight().rotateRight();
+  equal(originalShape, shape.toString());
+  shape = shape.rotateLeft().rotateLeft().rotateLeft().rotateLeft();
+  equal(originalShape, shape.toString());
+});
 
 /*
     public class The_I_shape {
