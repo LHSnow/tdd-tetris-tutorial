@@ -59,28 +59,25 @@ test("can be rotated left", function() {
 });
 
 
-/*
-    public class A_piece_of_5x5_blocks {
+module("A piece of 5x5 blocks", {
+  setup: function() {
+    piece = new Piece("" +
+      "..XXX\n" +
+      "..XX.\n" +
+      "..X..\n" +
+      ".....\n" +
+      ".....\n");
+  }
+});
 
-        @Before
-        public void createPiece() {
-            piece = new Piece("" +
-                    "..XXX\n" +
-                    "..XX.\n" +
-                    "..X..\n" +
-                    ".....\n" +
-                    ".....\n");
-        }
-
-        @Test
-        public void consists_of_many_blocks() {
-            assertEquals("" +
-                    "..XXX\n" +
-                    "..XX.\n" +
-                    "..X..\n" +
-                    ".....\n" +
-                    ".....\n", piece.toString());
-        }
+test("consists of many blocks", function() {
+  equal(piece.toString(), "" +
+    "..XXX\n" +
+    "..XX.\n" +
+    "..X..\n" +
+    ".....\n" +
+    ".....\n");
+});
 
 //        @Test
 //        public void can_be_rotated_right() {
@@ -103,8 +100,7 @@ test("can be rotated left", function() {
 //                    ".....\n" +
 //                    ".....\n", piece.toString());
 //        }
-    }
-*/
+
 
 </script>
 </html> 
