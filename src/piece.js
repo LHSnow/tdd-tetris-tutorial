@@ -44,6 +44,7 @@ Piece.prototype.rotateLeft = function() {
   return this;
 }
 
+//adapted from http://stackoverflow.com/questions/42519/how-do-you-rotate-a-two-dimensional-array/193942#193942
 Piece.prototype.rotate = function(clockwise) {
   var n = this.width;
   var rot = new Array(this.width);

@@ -28,12 +28,12 @@
 
 var shape;
 
-
+/*
 module("All shape instances", {
-
-setup: function() {
-  shape = Tetromino.T_SHAPE;
-}
+  setup: function() {
+    shape = new Tetromino("T");
+  }
+});
 
 test("are immutable", function() {
     var original = shape.toString();
@@ -42,42 +42,39 @@ test("are immutable", function() {
     shape.rotateLeft();
     equal(original, shape.toString());
   }
+);
+*/
+
+module("The T shape", {
+  setup: function() {
+      shape = new Tetromino("T");
+  }
 });
 
-/*
-    public class The_T_shape {
+test("is shaped like T", function() {
+  equal(shape.toString(), "" +
+          ".T.\n" +
+          "TTT\n" +
+          "...\n");
+});
 
-        @Before
-        public void createTShape() {
-            shape = Tetromino.T_SHAPE;
-        }
-
-        @Test
-        public void is_shaped_like_T() {
-            assertEquals("" +
-                    ".T.\n" +
-                    "TTT\n" +
-                    "...\n", shape.toString());
-        }
-
-//        @Test
-//        public void can_be_rotated_right_3_times() {
-//            shape = shape.rotateRight();
-//            assertEquals("" +
-//                    ".T.\n" +
-//                    ".TT\n" +
-//                    ".T.\n", shape.toString());
-//            shape = shape.rotateRight();
-//            assertEquals("" +
-//                    "...\n" +
-//                    "TTT\n" +
-//                    ".T.\n", shape.toString());
-//            shape = shape.rotateRight();
-//            assertEquals("" +
-//                    ".T.\n" +
-//                    "TT.\n" +
-//                    ".T.\n", shape.toString());
-//        }
+test("can be rotated right 3 times", function() {
+  shape = shape.rotateRight();
+  equal(shape.toString(), "" +
+          ".T.\n" +
+          ".TT\n" +
+          ".T.\n");
+  shape = shape.rotateRight();
+  equal(shape.toString(), "" +
+          "...\n" +
+          "TTT\n" +
+          ".T.\n");
+  shape = shape.rotateRight();
+  equal(shape.toString(), "" +
+          ".T.\n" +
+          "TT.\n" +
+          ".T.\n");
+});
 
 //        @Test
 //        public void can_be_rotated_left_3_times() {
@@ -106,8 +103,6 @@ test("are immutable", function() {
 //            shape = shape.rotateLeft().rotateLeft().rotateLeft().rotateLeft();
 //            assertEquals(originalShape, shape.toString());
 //        }
-    }
-*/
 
 /*
     public class The_I_shape {
