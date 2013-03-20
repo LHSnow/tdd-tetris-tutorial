@@ -41,9 +41,20 @@ Board.prototype.drop = function(block) {
 
 Board.prototype.tick = function() {
   //compare to height - 1 as array is 0-indexed
-  if(this.falling.ypos < (this.height -1)) {
+  if(!this.collisionCheck(this.falling) && (this.falling.ypos < (this.height -1))) {
     this.falling.ypos++;
   } else { 
     this.falling = undefined;
   }
+}
+
+Board.prototype.collisionCheck = function(block) {
+  if(this.blocks.length > 1) {
+    for(var b = 0; b < this.blocks.length; b++) {
+      if((block.ypos +1) == this.blocks[b].ypos) {
+        return true;
+      }   
+    }
+  }
+  return false;
 }
