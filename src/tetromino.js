@@ -18,6 +18,26 @@ function Tetromino(shape) {
                     "OO\n" +
                     "OO\n");
                     break;
+    case "S" : this.piece = new Piece("" +
+                    ".SS\n" +
+                    "SS.\n" +
+                    "...\n"); 
+                    break;
+    case "Z" : this.piece = new Piece("" +
+                    "ZZ.\n" +
+                    ".ZZ\n" +
+                    "...\n"); 
+                    break;                    
+    case "J" : this.piece = new Piece("" +
+                    "J..\n" +
+                    "JJJ\n" +
+                    "...\n"); 
+                    break;
+    case "L" : this.piece = new Piece("" +
+                    "..L\n" +
+                    "LLL\n" +
+                    "...\n"); 
+                    break;                                       
   }
 }
 
