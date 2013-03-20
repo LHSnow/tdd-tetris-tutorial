@@ -75,7 +75,7 @@ test("it moves down one row per tick", function() {
 test("at most one block may be falling at a time", function() {
     try {
         board.drop(new Block('Y'));
-        ok(false, "exception expected");
+        ok(false, "exception expected"); //fail!
     } catch (e) {
         ok(e.indexOf("already falling") !== -1);
     }
