@@ -1,3 +1,5 @@
+//Requires block.js
+
 function Piece(charMatrix) {
   this.width = charMatrix.indexOf("\n"); 
   
@@ -7,7 +9,12 @@ function Piece(charMatrix) {
   for(var y = 0; y < rows.length; y++) {
     this.matrix[y] = new Array(this.width);
     for(var x = 0; x < this.width; x++) {
-      this.matrix[y][x] = rows[y].charAt(x);
+      var type = rows[y].charAt(x);
+      if(type == '.') {
+        this.matrix[y][x] = null;
+      } else {
+        this.matrix[y][x] = new Block(type); 
+      }
     }
   }
 }
@@ -16,7 +23,11 @@ Piece.prototype.toString = function() {
   var str = "";
   for(var y = 0; y < this.width; y++) {
     for(var x = 0; x < this.width; x++) {
-      str = str + this.matrix[y][x];
+      if(this.matrix[y][x] == null) {
+        str = str + '.';
+      } else { 
+        str = str + this.matrix[y][x];
+      }
     }
     str = str + "\n";
   }
