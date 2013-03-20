@@ -1,41 +1,48 @@
-// Copyright (c) 2008-2012  Esko Luontola <www.orfjackal.net>
-// You may use and modify this source code freely for personal non-commercial use.
-// This source code may NOT be used as course material without prior written agreement.
+<!DOCTYPE html>
 
-package tetris;
+<!--
+  Copyright (c) 2008-2012  Esko Luontola <www.orfjackal.net> and Lars Bergström <harhund.com>
+  You may use and modify this source code freely for personal non-commercial use.
+  This source code may NOT be used as course material without prior written agreement.
 
-import net.orfjackal.nestedjunit.NestedJUnit;
-import org.junit.*;
-import org.junit.runner.RunWith;
+  @author Esko Luontola <www.orfjackal.net> (original Java/junit examples)
+  @author Lars Bergström <harhund.com> (adaptation to Javascript/qunit)
+-->
+ 
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Rotating Tetrominoes test</title>
+  <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.11.0.css">
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+</body>
 
-/**
- * @author Esko Luontola
- */
-@Ignore("contains no test")
-@RunWith(NestedJUnit.class)
-public class RotatingTetrominoesTest extends Assert {
+<script src="../src/block.js"></script>
+<script src="../src/piece.js"></script>
+<script src="../src/tetromino.js"></script>
+<script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
+<script>
 
-/*
-    private Tetromino shape;
+var shape;
 
 
-    public class All_shape_instances {
+module("All shape instances", {
 
-        @Before
-        public void createAnyShape() {
-            shape = Tetromino.T_SHAPE;
-        }
+setup: function() {
+  shape = Tetromino.T_SHAPE;
+}
 
-        @Test
-        public void are_immutable() {
-            String original = shape.toString();
-            shape.rotateRight();
-            assertEquals(original, shape.toString());
-            shape.rotateLeft();
-            assertEquals(original, shape.toString());
-        }
-    }
-*/
+test("are immutable", function() {
+    var original = shape.toString();
+    shape.rotateRight();
+    equal(original, shape.toString());
+    shape.rotateLeft();
+    equal(original, shape.toString());
+  }
+});
 
 /*
     public class The_T_shape {
@@ -188,4 +195,6 @@ public class RotatingTetrominoesTest extends Assert {
 //        }
     }
 */
-}
+
+</script>
+</html> 
