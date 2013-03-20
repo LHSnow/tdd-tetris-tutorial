@@ -102,86 +102,74 @@ test("rotating it 4 times will go back to the original shape", function() {
   equal(originalShape, shape.toString());
 });
 
-/*
-    public class The_I_shape {
+module("The I shape", {
+  setup: function() {
+    shape = Tetromino.I_SHAPE;
+  }
+});
 
-        @Before
-        public void createIShape() {
-            shape = Tetromino.I_SHAPE;
-        }
+test("is shaped like I", function() {
+  equal(shape.toString(), "" +
+          ".....\n" +
+          ".....\n" +
+          "IIII.\n" +
+          ".....\n" +
+          ".....\n");
+});
 
-        @Test
-        public void is_shaped_like_I() {
-            assertEquals("" +
-                    ".....\n" +
-                    ".....\n" +
-                    "IIII.\n" +
-                    ".....\n" +
-                    ".....\n", shape.toString());
-        }
+test("can be rotated right once", function() {
+  shape = shape.rotateRight();
+  equal(shape.toString(), "" +
+          ".....\n" +
+          "..I..\n" +
+          "..I..\n" +
+          "..I..\n" +
+          "..I..\n");
+});
 
-//        @Test
-//        public void can_be_rotated_right_once() {
-//            shape = shape.rotateRight();
-//            assertEquals("" +
-//                    ".....\n" +
-//                    "..I..\n" +
-//                    "..I..\n" +
-//                    "..I..\n" +
-//                    "..I..\n", shape.toString());
-//        }
-
-//        @Test
-//        public void can_be_rotated_left_once() {
+//        test("//        public void can_be_rotated_left_once() {
 //            shape = shape.rotateLeft();
-//            assertEquals("" +
+//            equal(shape.toString(), "" +
 //                    ".....\n" +
 //                    "..I..\n" +
 //                    "..I..\n" +
 //                    "..I..\n" +
-//                    "..I..\n", shape.toString());
+//                    "..I..\n");
 //        }
 
-//        @Test
-//        public void rotating_it_twice_will_get_back_to_the_original_shape() {
+//        test("//        public void rotating_it_twice_will_get_back_to_the_original_shape() {
 //            String originalShape = shape.toString();
 //            shape = shape.rotateRight().rotateRight();
-//            assertEquals(originalShape, shape.toString());
+//            equal(originalShape, shape.toString());
 //            shape = shape.rotateLeft().rotateLeft();
-//            assertEquals(originalShape, shape.toString());
+//            equal(originalShape, shape.toString());
 //        }
-    }
-*/
 
 /*
     public class The_O_shape {
 
-        @Before
-        public void createOShape() {
+        setup:         public void createOShape() {
             shape = Tetromino.O_SHAPE;
         }
 
-        @Test
-        public void is_shaped_like_O() {
-            assertEquals("" +
+        test("        public void is_shaped_like_O() {
+            equal("" +
                     ".OO\n" +
                     ".OO\n" +
                     "...\n", shape.toString());
         }
 
-//        @Test
-//        public void can_not_be_rotated_right() {
+//        test("//        public void can_not_be_rotated_right() {
 //            shape = shape.rotateRight();
-//            assertEquals("" +
+//            equal("" +
 //                    ".OO\n" +
 //                    ".OO\n" +
 //                    "...\n", shape.toString());
 //        }
 
-//        @Test
-//        public void can_not_be_rotated_left() {
+//        test("//        public void can_not_be_rotated_left() {
 //            shape = shape.rotateLeft();
-//            assertEquals("" +
+//            equal("" +
 //                    ".OO\n" +
 //                    ".OO\n" +
 //                    "...\n", shape.toString());
