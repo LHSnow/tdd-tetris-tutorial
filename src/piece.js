@@ -24,26 +24,26 @@ Piece.prototype.toString = function() {
 }
 
 Piece.prototype.rotateRight = function() {
-  var n = this.width;
-  var rot = new Array(this.width);
-  for(var y = 0; y < n; y++) {
-    rot[y] = new Array(n);
-    for(var x = 0; x < n; x++) {
-      rot[y][x] = this.matrix[n - x - 1][y];
-    }
-  }
-  this.matrix = rot;
-  
+  this.rotate(true);
   return this;
 }
 
 Piece.prototype.rotateLeft = function() {
+  this.rotate(false);
+  return this;
+}
+
+Piece.prototype.rotate = function(clockwise) {
   var n = this.width;
   var rot = new Array(this.width);
   for(var y = 0; y < n; y++) {
     rot[y] = new Array(n);
     for(var x = 0; x < n; x++) {
-      rot[y][x] = this.matrix[x][n - y - 1];
+      if(clockwise) {
+        rot[y][x] = this.matrix[n - x - 1][y];
+      } else {
+        rot[y][x] = this.matrix[x][n - y - 1];
+      }
     }
   }
   this.matrix = rot;
