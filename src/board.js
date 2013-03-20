@@ -41,20 +41,27 @@ Board.prototype.drop = function(block) {
 
 Board.prototype.tick = function() {
   //compare to height - 1 as array is 0-indexed
-  if(!this.collisionCheck(this.falling) && (this.falling.ypos < (this.height -1))) {
+  if(!this.collisionCheck()) {
     this.falling.ypos++;
   } else { 
     this.falling = undefined;
   }
 }
 
-Board.prototype.collisionCheck = function(block) {
+Board.prototype.collisionCheck = function() {
+  //hit bottom of board?
+  if(this.falling.ypos == (this.height -1)) {
+    return true;
+  }
+  //hit another block?
+  //(only applicable if there is at least two blocks on board)
   if(this.blocks.length > 1) {
     for(var b = 0; b < this.blocks.length; b++) {
-      if((block.ypos +1) == this.blocks[b].ypos) {
+      if((this.falling.ypos +1) == this.blocks[b].ypos) {
         return true;
       }   
     }
   }
+  //hit neither
   return false;
 }
