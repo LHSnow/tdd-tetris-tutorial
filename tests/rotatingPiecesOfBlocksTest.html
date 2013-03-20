@@ -27,21 +27,20 @@
 var piece;
 
 module("A piece of 3x3 blocks", {
-
   setup: function() {
     piece = new Piece("" +
               ".X.\n" +
               ".X.\n" +
               "...\n");
   }
-}
+});
 
 test("consists of many blocks", function() {
-  assertEquals(piece.toString(), "" +
+  equal(piece.toString(), "" +
           ".X.\n" +
           ".X.\n" +
           "...\n");
-}
+});
 
 //        @Test
 //        public void can_be_rotated_right() {
@@ -60,8 +59,7 @@ test("consists of many blocks", function() {
 //                    "XX.\n" +
 //                    "...\n", piece.toString());
 //        }
-    }
-*/
+
 
 /*
     public class A_piece_of_5x5_blocks {
@@ -109,7 +107,6 @@ test("consists of many blocks", function() {
 //        }
     }
 */
-}
 
 </script>
 </html> 
