@@ -1,37 +1,48 @@
 function Board(width, height) {
-  this.coord = new Array(height);
-  for (var i = 0; i < height; i++) {
-    this.coord[i] = new Array(width);
-  }
-  
-  this.falling = false;
+  this.width = width;
+  this.height = height;
+  this.falling = null;
+  this.blocks = new Array();
 }
 
 Board.prototype.toString = function() {
-  var board = "";
-  for(var i = 0; i < this.coord.length; i++) {
-    for(var j = 0; j < this.coord[i].length; j++) {
-      if(this.coord[i][j] == undefined) {
-        board = board + ".";    
+  var str = "";
+  for(var y = 0; y < this.height; y++) {
+    for(var x = 0; x < this.width; x++) {
+      var block = undefined;
+      for(var b = 0; b < this.blocks.length; b++) {
+        if((y == this.blocks[b].ypos) && (x == this.blocks[b].xpos)) {
+          block = this.blocks[b];
+          break;
+        }
+      }
+      if(block) {
+        str = str + block;
       } else {
-        board = board + this.coord[i][j];
+        str = str + ".";
       }
     }
-    board = board + "\n";
+    str = str + "\n";
   }
-  return board;
+  return str;
 }
 
 Board.prototype.hasFalling = function() {
-  return this.falling;
+  return this.falling != null;
 }
 
 Board.prototype.drop = function(block) {
-  this.falling = true;
-  var middle = Math.floor(this.coord[0].length / 2);
-  this.coord[0][middle] = block;
+  this.falling = block;
+  this.blocks.push(block);
+  var x = Math.floor(this.width / 2);
+  block.xpos = x;
+  block.ypos = 0;
 }
 
 Board.prototype.tick = function() {
-  
+  if(this.falling.ypos < this.height) {
+    this.falling.ypos++;
+  } else { 
+    this.falling = undefined;
+  }
 }

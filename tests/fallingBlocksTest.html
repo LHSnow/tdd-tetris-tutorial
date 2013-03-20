@@ -108,11 +108,11 @@ test("it is still falling on the last row", function() {
 
 test("it stops when it hits the bottom", function() {
     board.tick();
+    ok(!board.hasFalling(), "the block should stop moving");
     equal(board.toString(), "" +
             "...\n" +
             "...\n" +
-            ".X.\n");
-    ok(!board.hasFalling(), "the block should stop moving");
+            ".X.\n");  
 });
 
 
