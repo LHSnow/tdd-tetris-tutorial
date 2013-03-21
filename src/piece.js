@@ -1,19 +1,19 @@
 //Requires block.js
 
 function Piece(charMatrix) {
-  this.width = charMatrix.indexOf("\n"); 
+  this.size = charMatrix.indexOf("\n");
+  this.blocks = new Array(); 
   
   var rows = charMatrix.split("\n");
-  this.matrix = new Array(rows.length);
   
-  for(var y = 0; y < rows.length; y++) {
-    this.matrix[y] = new Array(this.width);
-    for(var x = 0; x < this.width; x++) {
+  for(var y = 0; y < this.size; y++) {
+    for(var x = 0; x < this.size; x++) {
       var type = rows[y].charAt(x);
-      if(type == '.') {
-        this.matrix[y][x] = null;
-      } else {
-        this.matrix[y][x] = new Block(type); 
+      if(type != ".") {
+        var block = new Block(type);
+        block.xpos = x;
+        block.ypos = y;
+        this.blocks.push(block);
       }
     }
   }
@@ -21,12 +21,19 @@ function Piece(charMatrix) {
 
 Piece.prototype.toString = function() {
   var str = "";
-  for(var y = 0; y < this.width; y++) {
-    for(var x = 0; x < this.width; x++) {
-      if(this.matrix[y][x] == null) {
-        str = str + '.';
-      } else { 
-        str = str + this.matrix[y][x];
+  for(var y = 0; y < this.size; y++) {
+    for(var x = 0; x < this.size; x++) {
+      var block = undefined;
+      for(var b = 0; b < this.blocks.length; b++) {
+        if((y == this.blocks[b].ypos) && (x == this.blocks[b].xpos)) {
+          block = this.blocks[b];
+          break;
+        }
+      }
+      if(block) {
+        str = str + block;
+      } else {
+        str = str + ".";
       }
     }
     str = str + "\n";
@@ -46,19 +53,17 @@ Piece.prototype.rotateLeft = function() {
 
 //adapted from http://stackoverflow.com/questions/42519/how-do-you-rotate-a-two-dimensional-array/193942#193942
 Piece.prototype.rotate = function(clockwise) {
-  var n = this.width;
-  var rot = new Array(this.width);
-  for(var y = 0; y < n; y++) {
-    rot[y] = new Array(n);
-    for(var x = 0; x < n; x++) {
-      if(clockwise) {
-        rot[y][x] = this.matrix[n - x - 1][y];
-      } else {
-        rot[y][x] = this.matrix[x][n - y - 1];
-      }
+  var n = this.size;
+  for(var b = 0; b < this.blocks.length; b++) {
+    var x = this.blocks[b].xpos;
+    var y = this.blocks[b].ypos;
+    if(clockwise) {
+      this.blocks[b].ypos = x;
+      this.blocks[b].xpos = n - y - 1;
+    } else {
+      this.blocks[b].ypos = n - x - 1;
+      this.blocks[b].xpos = y;
     }
   }
-  this.matrix = rot;
-  
   return this;
 }
