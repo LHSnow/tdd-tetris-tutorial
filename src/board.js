@@ -50,7 +50,6 @@ Board.prototype.drop = function(block) {
   var xOffset = Math.floor(this.width / 2);
   //single block
   this.falling = block;
-  this.blocks.push(block);
   block.xpos = xOffset;
   block.ypos = 0;
 
@@ -58,6 +57,7 @@ Board.prototype.drop = function(block) {
 
 Board.prototype.tick = function() {
   if(this.collisionCheck() || this.falling.collisionCheck(this.blocks)) {
+    this.blocks.push(this.falling);
     this.falling = null;
   } else { 
     this.falling.moveDown();
