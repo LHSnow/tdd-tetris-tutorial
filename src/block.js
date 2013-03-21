@@ -20,3 +20,7 @@ Block.prototype.collisionCheck = function(blocks) {
   }
   return false;
 }
+
+Block.prototype.moveDown = function() {
+  this.ypos++;
+}

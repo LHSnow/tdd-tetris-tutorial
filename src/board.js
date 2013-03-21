@@ -51,7 +51,7 @@ Board.prototype.tick = function() {
   if(this.collisionCheck() || this.falling.collisionCheck(this.blocks)) {
     this.falling = null;
   } else { 
-    this.falling.ypos++;
+    this.falling.moveDown();
   }
 }
 Board.prototype.collisionCheck = function() {
