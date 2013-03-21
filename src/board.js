@@ -12,9 +12,19 @@ Board.prototype.toString = function() {
     matrix[y] = new Array(this.width);
   }
   if(this.hasFalling()) {
-    var x = this.falling.xpos;
-    var y = this.falling.ypos;
-    matrix[y][x] = this.falling;
+    if(this.falling.type) {
+      //single block
+      var x = this.falling.xpos;
+      var y = this.falling.ypos;
+      matrix[y][x] = this.falling;  
+    } else {
+      //multiple block shapes
+      var pos = this.falling.blockPos();
+      for(var i = 0; i < pos.length; i++) {
+        var p = pos[i];
+        matrix[p.ypos][p.xpos] = p;
+      }
+    }
   }
   for(var b = 0; b < this.blocks.length; b++) {
     var x = this.blocks[b].xpos;

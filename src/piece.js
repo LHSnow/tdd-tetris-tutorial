@@ -3,8 +3,6 @@
 function Piece(charMatrix) {
   this.size = charMatrix.indexOf("\n");
   this.blocks = new Array();
-  this.xpos = undefined;
-  this.ypos = undefined; 
   
   var rows = charMatrix.split("\n");
   
@@ -44,15 +42,7 @@ Piece.prototype.toString = function() {
 }
 
 Piece.prototype.blockPos = function() {
-  var positions = new Array();
-  for(var b = 0; b < this.blocks.length; b++) {
-    var intBlock = this.blocks[b];
-    var extBlock = new Block(relBlock.type);
-    extBlock.xpos = intBlock + this.xpos;
-    extBlock.ypos = intBlock + this.ypos;
-    positions.push(block);
-  }
-  return positions;
+  return this.blocks;
 }
 
 Piece.prototype.rotateRight = function() {
