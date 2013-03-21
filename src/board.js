@@ -38,19 +38,21 @@ Board.prototype.drop = function(piece) {
   }
   
   //find horizontal centre of board
-  var x = Math.floor(this.width / 2);
+  var xOffset = Math.floor(this.width / 2);
   if(piece.blocks) {
     //multiple-block pieces have blocks defined
     for(var b = 0; b < piece.blocks.length; b++) {
-      this.falling.push(piece.blocks[b]);
-      this.blocks.push(piece.blocks[b]);
+      var block = piece.blocks[b];
+      this.falling.push(block);
+      this.blocks.push(block);
+      block.xpos = block.xpos + xOffset;
     }
   } else {
     //single block
     var block = piece;
     this.falling.push(block);
     this.blocks.push(block);
-    block.xpos = x;
+    block.xpos = xOffset;
     block.ypos = 0;
   }
   
