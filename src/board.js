@@ -45,7 +45,8 @@ Board.prototype.drop = function(piece) {
       var block = piece.blocks[b];
       this.falling.push(block);
       this.blocks.push(block);
-      block.xpos = block.xpos + xOffset;
+      var halfSize = Math.floor(piece.size / 2);
+      block.xpos = block.xpos + xOffset - halfSize;
     }
   } else {
     //single block
