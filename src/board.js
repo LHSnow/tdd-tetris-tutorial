@@ -1,7 +1,7 @@
 function Board(width, height) {
   this.width = width;
   this.height = height;
-  this.falling = new Array();
+  this.falling = null;
   this.blocks = new Array();
 }
 
@@ -28,10 +28,10 @@ Board.prototype.toString = function() {
 }
 
 Board.prototype.hasFalling = function() {
-  return this.falling.length > 0;
+  return this.falling != null;
 }
 
-Board.prototype.drop = function(piece) {
+Board.prototype.drop = function(block) {
   //at most one block may be falling at the same time
   if(this.hasFalling()) {
     throw "already falling";
@@ -39,53 +39,27 @@ Board.prototype.drop = function(piece) {
   
   //find horizontal centre of board
   var xOffset = Math.floor(this.width / 2);
-  if(piece.blocks) {
-    //multiple-block pieces have blocks defined
-    for(var b = 0; b < piece.blocks.length; b++) {
-      var block = piece.blocks[b];
-      this.falling.push(block);
-      this.blocks.push(block);
-      var halfSize = Math.floor(piece.size / 2);
-      block.xpos = block.xpos + xOffset - halfSize;
-    }
-  } else {
-    //single block
-    var block = piece;
-    this.falling.push(block);
-    this.blocks.push(block);
-    block.xpos = xOffset;
-    block.ypos = 0;
-  }
-  
+  //single block
+  this.falling = block;
+  this.blocks.push(block);
+  block.xpos = xOffset;
+  block.ypos = 0;
+
 }
 
 Board.prototype.tick = function() {
-  if(!this.collisionCheck()) {
-    for(var b = 0; b < this.falling.length; b++) {
-      this.falling[b].ypos++;
-    }
+  if(this.collisionCheck() || this.falling.collisionCheck(this.blocks)) {
+    this.falling = null;
   } else { 
-    this.falling.length = 0;
+    this.falling.ypos++;
   }
 }
 Board.prototype.collisionCheck = function() {
-  for(var f = 0; f < this.falling.length; f++) {
-    //hit bottom of board?
-    //compare to height - 1 as array is 0-indexed
-    if(this.falling[f].ypos == (this.height -1)) {
-      return true;
-    }
-    //hit another block?
-    //(only applicable if there is at least two blocks on board)
-    if(this.blocks.length > 1) {
-      for(var b = 0; b < this.blocks.length; b++) {
-        if((this.falling[f].ypos +1) == this.blocks[b].ypos) {
-          return true;
-        }   
-      }
-    }
+  //hit bottom of board?
+  //compare to height - 1 as array is 0-indexed
+  if(this.falling.ypos == (this.height -1)) {
+    return true;
   }
-  
-  //hit neither
+
   return false;
 }
