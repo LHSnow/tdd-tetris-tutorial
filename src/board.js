@@ -1,7 +1,7 @@
 function Board(width, height) {
   this.width = width;
   this.height = height;
-  this.falling = null;
+  this.falling = new Array();
   this.blocks = new Array();
 }
 
@@ -28,15 +28,15 @@ Board.prototype.toString = function() {
 }
 
 Board.prototype.hasFalling = function() {
-  return this.falling != null;
+  return this.falling.length > 0;
 }
 
 Board.prototype.drop = function(block) {
   //at most one block may be falling at the same time
-  if(this.falling) {
+  if(this.hasFalling()) {
     throw "already falling";
   }
-  this.falling = block;
+  this.falling.push(block);
   this.blocks.push(block);
   //find horizontal centre of board
   var x = Math.floor(this.width / 2);
@@ -45,28 +45,32 @@ Board.prototype.drop = function(block) {
 }
 
 Board.prototype.tick = function() {
-  //compare to height - 1 as array is 0-indexed
   if(!this.collisionCheck()) {
-    this.falling.ypos++;
+    for(var b = 0; b < this.falling.length; b++) {
+      this.falling[b].ypos++;
+    }
   } else { 
-    this.falling = undefined;
+    this.falling.length = 0;
   }
 }
-
 Board.prototype.collisionCheck = function() {
-  //hit bottom of board?
-  if(this.falling.ypos == (this.height -1)) {
-    return true;
-  }
-  //hit another block?
-  //(only applicable if there is at least two blocks on board)
-  if(this.blocks.length > 1) {
-    for(var b = 0; b < this.blocks.length; b++) {
-      if((this.falling.ypos +1) == this.blocks[b].ypos) {
-        return true;
-      }   
+  for(var f = 0; f < this.falling.length; f++) {
+    //hit bottom of board?
+    //compare to height - 1 as array is 0-indexed
+    if(this.falling[f].ypos == (this.height -1)) {
+      return true;
+    }
+    //hit another block?
+    //(only applicable if there is at least two blocks on board)
+    if(this.blocks.length > 1) {
+      for(var b = 0; b < this.blocks.length; b++) {
+        if((this.falling[f].ypos +1) == this.blocks[b].ypos) {
+          return true;
+        }   
+      }
     }
   }
+  
   //hit neither
   return false;
 }
