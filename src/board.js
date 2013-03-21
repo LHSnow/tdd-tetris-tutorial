@@ -7,19 +7,28 @@ function Board(width, height) {
 
 Board.prototype.toString = function() {
   var str = "";
+  var matrix = new Array(this.height);
+  for(var y = 0; y < this.height; y++) {
+    matrix[y] = new Array(this.width);
+  }
+  if(this.hasFalling()) {
+    var x = this.falling.xpos;
+    var y = this.falling.ypos;
+    matrix[y][x] = this.falling;
+  }
+  for(var b = 0; b < this.blocks.length; b++) {
+    var x = this.blocks[b].xpos;
+    var y = this.blocks[b].ypos;
+    matrix[y][x] = this.blocks[b];
+  }
+  
   for(var y = 0; y < this.height; y++) {
     for(var x = 0; x < this.width; x++) {
-      var block = undefined;
-      for(var b = 0; b < this.blocks.length; b++) {
-        if((y == this.blocks[b].ypos) && (x == this.blocks[b].xpos)) {
-          block = this.blocks[b];
-          break;
-        }
-      }
-      if(block) {
-        str = str + block;
-      } else {
+      var block = matrix[y][x];
+      if(block == null) {
         str = str + ".";
+      } else {
+        str = str + block;
       }
     }
     str = str + "\n";
