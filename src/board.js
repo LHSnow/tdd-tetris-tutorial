@@ -31,17 +31,29 @@ Board.prototype.hasFalling = function() {
   return this.falling.length > 0;
 }
 
-Board.prototype.drop = function(block) {
+Board.prototype.drop = function(piece) {
   //at most one block may be falling at the same time
   if(this.hasFalling()) {
     throw "already falling";
   }
-  this.falling.push(block);
-  this.blocks.push(block);
+  
   //find horizontal centre of board
   var x = Math.floor(this.width / 2);
-  block.xpos = x;
-  block.ypos = 0;
+  if(piece.blocks) {
+    //multiple-block pieces have blocks defined
+    for(var b = 0; b < piece.blocks.length; b++) {
+      this.falling.push(piece.blocks[b]);
+      this.blocks.push(piece.blocks[b]);
+    }
+  } else {
+    //single block
+    var block = piece;
+    this.falling.push(block);
+    this.blocks.push(block);
+    block.xpos = x;
+    block.ypos = 0;
+  }
+  
 }
 
 Board.prototype.tick = function() {
