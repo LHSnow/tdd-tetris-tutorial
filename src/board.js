@@ -3,38 +3,39 @@ function Board(width, height) {
   this.height = height;
   this.falling = null;
   this.blocks = new Array();
+  this.matrix = new Array();
+  for(var y = 0; y < height; y++) {
+    this.matrix[y] = new Array(width);  
+  }
 }
 
 Board.prototype.toString = function() {
   var str = "";
-  var matrix = new Array(this.height);
-  for(var y = 0; y < this.height; y++) {
-    matrix[y] = new Array(this.width);
-  }
+  
   if(this.hasFalling()) {
     if(this.falling.type) {
       //single block
       var x = this.falling.xpos;
       var y = this.falling.ypos;
-      matrix[y][x] = this.falling;  
+      this.matrix[y][x] = this.falling;  
     } else {
       //multiple block shapes
       var pos = this.falling.blockPos();
       for(var i = 0; i < pos.length; i++) {
         var p = pos[i];
-        matrix[p.ypos][p.xpos] = p;
+        this.matrix[p.ypos][p.xpos] = p;
       }
     }
   }
   for(var b = 0; b < this.blocks.length; b++) {
     var x = this.blocks[b].xpos;
     var y = this.blocks[b].ypos;
-    matrix[y][x] = this.blocks[b];
+    this.matrix[y][x] = this.blocks[b];
   }
   
   for(var y = 0; y < this.height; y++) {
     for(var x = 0; x < this.width; x++) {
-      var block = matrix[y][x];
+      var block = this.matrix[y][x];
       if(block == null) {
         str = str + ".";
       } else {
