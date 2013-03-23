@@ -3,7 +3,7 @@ function Board(width, height) {
   this.height = height;
   this.falling = null;
   this.blocks = new Array();
-  this.matrix = new Array();
+  this.matrix = new Array(height);
   for(var y = 0; y < height; y++) {
     this.matrix[y] = new Array(width);  
   }
