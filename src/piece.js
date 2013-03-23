@@ -3,8 +3,6 @@
 function Piece(charMatrix) {
   this.size = charMatrix.indexOf("\n");
   this.blocks = new Array();
-  this.xpos = 0;
-  this.ypos = 0;
   
   var rows = charMatrix.split("\n");
   
@@ -46,9 +44,7 @@ Piece.prototype.toString = function() {
 Piece.prototype.blockAt = function(y,x) {
   for(var b = 0; b < this.blocks.length; b++) {
     var block = this.blocks[b];
-    var absx = block.xpos + this.xpos;
-    var absy = block.ypos + this.ypos;
-    if((absx == x) && (absy == y)) {
+    if((block.xpos == x) && (block.ypos == y)) {
       return block;
     }
   }

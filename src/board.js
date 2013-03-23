@@ -1,7 +1,9 @@
-function Board(width, height) {
+function Board(height, width) {
   this.width = width;
   this.height = height;
   this.falling = null;
+  this.fallX = 0;
+  this.fallY = 0;
   this.matrix = new Array(height);
   for(var y = 0; y < height; y++) {
     this.matrix[y] = new Array(width);  
@@ -33,13 +35,13 @@ Board.prototype.fallingBlockAt = function(y,x) {
     return null;
   }
   if(this.falling.size == 1) {
-    if(this.falling.xpos == x && this.falling.ypos == y) {
+    if(this.fallX == x && this.fallY == y) {
       return this.falling;
     } else {
       return null;
     }
   } else {
-    return this.falling.blockAt(y,x);
+    return this.falling.blockAt(y-this.fallY,x-this.fallX);
   }
 }
 
@@ -54,28 +56,27 @@ Board.prototype.drop = function(block) {
   }
   
   //find horizontal centre of board
-  var xOffset = Math.floor(this.width / 2);
+  var xOffset = Math.floor(this.width / 2) - Math.floor(block.size / 2);
   //single block
   this.falling = block;
-  block.xpos = xOffset;
-  block.ypos = 0;
-
+  this.fallX = xOffset;
+  this.fallY = 0;
 }
 
 Board.prototype.tick = function() {
   if(this.boardCollision() || this.blockCollision()) {
-    var x = this.falling.xpos;
-    var y = this.falling.ypos;
+    var x = this.fallX;
+    var y = this.fallY;
     this.matrix[y][x] = this.falling;
     this.falling = null;
   } else { 
-    this.falling.moveDown();
+    this.fallY++;
   }
 }
 Board.prototype.boardCollision = function() {
   //hit bottom of board?
   //compare to height - 1 as array is 0-indexed
-  if(this.falling.ypos == (this.height -1)) {
+  if(this.fallY == (this.height -1)) {
     return true;
   }
 
@@ -83,8 +84,8 @@ Board.prototype.boardCollision = function() {
 }
 
 Board.prototype.blockCollision = function() {
-  var x = this.falling.xpos;
-  var y = this.falling.ypos;
+  var x = this.fallX;
+  var y = this.fallY;
   if(this.matrix[y+1][x]) {
     return true;
   }
