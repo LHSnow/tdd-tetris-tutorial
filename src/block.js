@@ -1,5 +1,6 @@
 function Block(type) {
   this.type = type;
+  this.size = 1;
   this.xpos = undefined;
   this.ypos = undefined;
 }

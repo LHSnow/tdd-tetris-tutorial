@@ -45,6 +45,10 @@ Tetromino.prototype.toString = function() {
   return this.piece.toString();
 }
 
+Tetromino.prototype.blockAt = function(y,x) {
+  return this.piece.blockAt(y,x);
+}
+
 Tetromino.prototype.rotateLeft = function() {
   this.piece.rotateLeft();
   return this;
