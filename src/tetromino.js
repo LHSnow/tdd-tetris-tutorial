@@ -39,6 +39,7 @@ function Tetromino(shape) {
                     "...\n"); 
                     break;                                       
   }
+  this.size = this.piece.size;
 }
 
 Tetromino.prototype.toString = function() {
