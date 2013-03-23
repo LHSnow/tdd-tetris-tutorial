@@ -14,7 +14,7 @@ Board.prototype.toString = function() {
   for(var y = 0; y < this.height; y++) {
     for(var x = 0; x < this.width; x++) {
       var block = this.matrix[y][x];
-      if(this.hasFalling() && this.falling.xpos == x && this.falling.ypos == y) {
+      if(this.hasFalling() && this.hasFallingAt(y,x)) {
         str = str + this.falling;
       } else if(block == undefined) {
         str = str + ".";
@@ -25,6 +25,10 @@ Board.prototype.toString = function() {
     str = str + "\n";
   }
   return str;
+}
+
+Board.prototype.hasFallingAt = function(y,x) {
+  return this.falling.xpos == x && this.falling.ypos == y
 }
 
 Board.prototype.hasFalling = function() {
