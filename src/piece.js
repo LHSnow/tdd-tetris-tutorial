@@ -41,10 +41,6 @@ Piece.prototype.toString = function() {
   return str;
 }
 
-Piece.prototype.blockPos = function() {
-  return this.blocks;
-}
-
 Piece.prototype.rotateRight = function() {
   this.rotate(true);
   return this;
