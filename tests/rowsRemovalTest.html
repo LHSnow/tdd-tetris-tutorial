@@ -85,5 +85,24 @@ test("a single full row is removed and replaced by a single empty row on top of 
     //"OOOOOOJJ\n" <- removed
 });
 
+test("a double full row is removed and replaced by two empty rows on top of the board", function() {
+  board.drop(new Tetromino("O"));
+  board.moveRight();
+  board.moveRight();
+  board.moveRight();
+  board.fall();
+  equal(board.toString(), ""+
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "OOOOOO..\n" +
+    "OOOOOO..\n");
+    //"OOOOOOOO\n" <- removed
+    //"OOOOOOOO\n" <- removed
+});
+
 </script>
 </html> 
