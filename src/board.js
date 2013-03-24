@@ -39,6 +39,7 @@ Board.prototype.fallingBlockAt = function(y,x) {
       return this.falling;
     } else {
       return null;
+
     }
   } else {
     return this.falling.blockAt(y-this.fallY,x-this.fallX);
@@ -67,7 +68,15 @@ Board.prototype.tick = function() {
   if(this.boardCollision() || this.blockCollision()) {
     var x = this.fallX;
     var y = this.fallY;
-    this.matrix[y][x] = this.falling;
+    if(this.falling.size > 1) {
+      console.log(this.falling);
+      for(var b = 0; b < this.falling.blocks.length; b++) {
+        var block = this.falling.blocks[b];
+        this.matrix[y+block.ypos][x+block.xpos] = block;
+      }
+    } else {
+      this.matrix[y][x] = this.falling;
+    }
     this.falling = null;
   } else { 
     this.fallY++;
@@ -75,8 +84,7 @@ Board.prototype.tick = function() {
 }
 Board.prototype.boardCollision = function() {
   //hit bottom of board?
-  //compare to height - 1 as array is 0-indexed
-  if(this.fallY == (this.height -1)) {
+  if(this.fallY + this.falling.size - this.falling.freeRows() == this.height) {
     return true;
   }
 

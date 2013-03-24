@@ -39,7 +39,9 @@ function Tetromino(shape) {
                     "...\n"); 
                     break;                                       
   }
-  this.size = this.piece.size;
+  //for Board.js access (pseudo-abstract fields of Piece);
+  this.size = this.piece.size; 
+  this.blocks = this.piece.blocks;
 }
 
 Tetromino.prototype.toString = function() {
@@ -48,6 +50,10 @@ Tetromino.prototype.toString = function() {
 
 Tetromino.prototype.blockAt = function(y,x) {
   return this.piece.blockAt(y,x);
+}
+
+Tetromino.prototype.freeRows = function() {
+  return this.piece.freeRows();
 }
 
 Tetromino.prototype.rotateLeft = function() {

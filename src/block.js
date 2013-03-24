@@ -12,3 +12,7 @@ Block.prototype.toString = function() {
 Block.prototype.moveDown = function() {
   this.ypos++;
 }
+
+Block.prototype.freeRows = function() {
+  return 0;
+}
