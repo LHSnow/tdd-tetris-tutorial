@@ -64,7 +64,7 @@ Board.prototype.drop = function(block) {
 }
 
 Board.prototype.tick = function() {
-  if(this.boardCollision() || this.blockCollision()) {
+  if(this.floorCollision() || this.blockCollision()) {
     this.lockFalling();
   } else { 
     this.fallY++;
@@ -97,7 +97,7 @@ Board.prototype.moveDown = function() {
   this.fallY++;
 }
 
-Board.prototype.boardCollision = function() {
+Board.prototype.floorCollision = function() {
   //hit bottom of board?
   if(this.fallY + this.falling.size - this.falling.freeRows() == this.height) {
     return true;
