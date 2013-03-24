@@ -52,10 +52,6 @@ Tetromino.prototype.blockAt = function(y,x) {
   return this.piece.blockAt(y,x);
 }
 
-Tetromino.prototype.freeRows = function() {
-  return this.piece.freeRows();
-}
-
 Tetromino.prototype.rotateLeft = function() {
   this.piece.rotateLeft();
   return this;

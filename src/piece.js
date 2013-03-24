@@ -51,17 +51,6 @@ Piece.prototype.blockAt = function(y,x) {
   return null;
 }
 
-Piece.prototype.freeRows = function() {
-  var maxY = 0;
-  for(var b = 0; b < this.blocks.length; b++) {
-    var block = this.blocks[b];
-    if(maxY < block.ypos) {
-      maxY = block.ypos;
-    }
-  }
-  return this.size - 1 - maxY;
-}
-
 Piece.prototype.rotateRight = function() {
   this.rotate(true);
   return this;
