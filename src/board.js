@@ -75,7 +75,7 @@ Board.prototype.drop = function(block) {
 }
 
 Board.prototype.tick = function() {
-  if(this.floorCollision() || this.blockCollision("down")) {
+  if(this.blockCollision("down")) {
     this.lockFalling();
   } else { 
     this.fallY++;
@@ -101,14 +101,14 @@ Board.prototype.lockFalling = function() {
 //move currently falling piece to the left
 Board.prototype.moveLeft = function() {
   //avoid hitting left wall
-  if(!this.leftWallCollision() && !this.blockCollision("left")) {
+  if(!this.blockCollision("left")) {
     this.fallX--;
   }
 }
 
 //move currently falling piece to the right
 Board.prototype.moveRight = function() {
-  if(!this.rightWallCollision() && !this.blockCollision("right")) {
+  if(!this.blockCollision("right")) {
     this.fallX++;
   }
 }
@@ -121,7 +121,7 @@ Board.prototype.moveDown = function() {
 Board.prototype.rotateRight = function() {
   //"try"
   this.falling.rotateRight();
-  if(this.leftWallCollision() || this.rightWallCollision()) {
+  if(this.blockCollision()) {
     this.falling.rotateLeft();
   }
 }
@@ -129,43 +129,13 @@ Board.prototype.rotateRight = function() {
 Board.prototype.rotateLeft = function() {
   //"try"
   this.falling.rotateLeft();
-  if(this.leftWallCollision() || this.rightWallCollision()) {
+  if(this.blockCollision()) {
     this.falling.rotateRight();
   }
 }
 
-//true if currently falling piece has a block directly above the board floor
-Board.prototype.floorCollision = function() {
-  for(var x = 0; x < this.width; x++) {
-    if(this.fallingBlockAt(this.height-1,x) != null) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-//true if currently falling piece has a block directly to the right of the left wall
-Board.prototype.leftWallCollision = function() {
-  for(var y = 0; y < this.height; y++) {
-    if(this.fallingBlockAt(y,0) != null) {
-      return true;
-    }
-  }
-  return false;
-}
-
-//true if currently falling piece has a block directly to the left of the right wall
-Board.prototype.rightWallCollision = function() {
-  for(var y = 0; y < this.height; y++) {
-    if(this.fallingBlockAt(y,this.width-1) != null) {
-      return true;
-    }
-  }
-  return false;
-}
-
 //true if there is a fixed block in arg:direction of a falling block
+//no direction means checking if current position of falling block is illegal
 Board.prototype.blockCollision = function(direction) {
   //iterate over all fixed blocks
   for(var y = 0; y < this.height; y++) {
@@ -177,8 +147,8 @@ Board.prototype.blockCollision = function(direction) {
         switch(direction) {
           case "left" : fallingBlock = this.fallingBlockAt(y,x+1); break;
           case "right" : fallingBlock = this.fallingBlockAt(y,x-1); break;
-          case "down" : //falls through to default
-            default : fallingBlock = this.fallingBlockAt(y-1,x); //down
+          case "down" : fallingBlock = this.fallingBlockAt(y-1,x); break;
+          default : fallingBlock = this.fallingBlockAt(y,x); //current position of blocks, for "trying"
         }
         if(fallingBlock != null) {
           return true;
