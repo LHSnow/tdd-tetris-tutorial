@@ -135,6 +135,52 @@ test("can not be rotated when there is no room to rotate off right wall", functi
     "........\n");
 });
 
+test("can not be rotated when there is no room to rotate off other piece", function() {
+  board.tick();
+  board.tick();
+  board.tick();
+  board.tick();
+  board.tick(); //lock
+  equal(board.toString(), "" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "....T...\n" +
+    "...TTT..\n");
+  board.drop(new Tetromino("S"));
+  board.moveLeft();
+  board.moveLeft();
+  board.tick();
+  board.tick();
+  board.tick();
+  board.tick();
+  equal(board.toString(), "" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "..SST...\n" +
+    ".SSTTT..\n");
+  board.rotateRight();
+  equal(board.toString(), "" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "..SST...\n" +
+    ".SSTTT..\n");
+  //other direction
+  board.rotateLeft();
+  equal(board.toString(), "" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "..SST...\n" +
+    ".SSTTT..\n");
+});
+
     // TODO: as above but ...right wall, other pieces...)
     // TODO: when piece is up against a wall (or piece) and it is rotated (no room to rotate), move it away from the wall ("wallkick")
     // See: http://bsixcentdouze.free.fr/tc/tgm-en/tgm.html
