@@ -87,13 +87,13 @@ Board.prototype.lockFalling = function() {
 
 Board.prototype.moveLeft = function() {
   //avoid hitting left wall
-  if(this.fallX > 0 && !this.blockCollision("left")) {
+  if(!this.leftWallCollision() && !this.blockCollision("left")) {
     this.fallX--;
   }
 }
 
 Board.prototype.moveRight = function() {
-  if((this.fallX + this.falling.size < this.width) && !this.blockCollision("right")) {
+  if(!this.rightWallCollision() && !this.blockCollision("right")) {
     this.fallX++;
   }
 }
@@ -103,13 +103,30 @@ Board.prototype.moveDown = function() {
 }
 
 Board.prototype.floorCollision = function() {
-  //hit bottom of board?
   for(var x = 0; x < this.width; x++) {
     if(this.fallingBlockAt(this.height-1,x) != null) {
       return true;
     }
   }
 
+  return false;
+}
+
+Board.prototype.leftWallCollision = function() {
+  for(var y = 0; y < this.height; y++) {
+    if(this.fallingBlockAt(y,0) != null) {
+      return true;
+    }
+  }
+  return false;
+}
+
+Board.prototype.rightWallCollision = function() {
+  for(var y = 0; y < this.height; y++) {
+    if(this.fallingBlockAt(y,this.width-1) != null) {
+      return true;
+    }
+  }
   return false;
 }
 
