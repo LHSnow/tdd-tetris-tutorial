@@ -86,7 +86,10 @@ Board.prototype.lockFalling = function() {
 }
 
 Board.prototype.moveLeft = function() {
-  this.fallX--;
+  //avoid hitting left wall
+  if(this.fallX > 0) {
+    this.fallX--;
+  }
 }
 
 Board.prototype.moveRight = function() {
