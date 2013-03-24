@@ -21,11 +21,52 @@
 </body>
 
 <script src="../src/board.js"></script>
+<script src="../src/tetromino.js"></script>
 <script src="../src/piece.js"></script>
+<script src="../src/block.js"></script>
 <script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
 <script>
 
-//public class MovingAFallingPieceTest extends Assert {
+var board;
+
+module("A falling piece", {
+  setup: function() {
+    board = new Board(6,8);
+    board.drop(new Tetromino("T"));
+  }
+});
+
+test("can be moved left", function() {
+  board.moveLeft();
+  equal(board.toString(), "" +
+    "...T....\n" +
+    "..TTT...\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
+});
+test("can be moved right", function() {
+  board.moveRight();
+  equal(board.toString(), "" +
+    ".....T..\n" +
+    "....TTT.\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
+});
+
+test("can be moved down", function() {
+  board.moveDown();
+  equal(board.toString(), "" +
+    "........\n" +
+    "....T...\n" +
+    "...TTT..\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");  
+});
 
     // TODO: a falling piece can be moved left
     // TODO: a falling piece can be moved right
@@ -39,7 +80,7 @@
 
     // P.S. Take into consideration, that part of the piece's area may be empty cells.
     // Only non-empty cells should take part in the collision checks.
-}
+
 
 </script>
 </html> 

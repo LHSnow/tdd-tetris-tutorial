@@ -80,6 +80,19 @@ Board.prototype.tick = function() {
     this.fallY++;
   }
 }
+
+Board.prototype.moveLeft = function() {
+  this.fallX--;
+}
+
+Board.prototype.moveRight = function() {
+  this.fallX++;
+}
+
+Board.prototype.moveDown = function() {
+  this.fallY++;
+}
+
 Board.prototype.boardCollision = function() {
   //hit bottom of board?
   if(this.fallY + this.falling.size - this.falling.freeRows() == this.height) {
