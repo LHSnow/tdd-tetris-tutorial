@@ -68,7 +68,7 @@ test("can be moved down", function() {
     "........\n");  
 });
 
-test("it will not move left over over the board", function() {
+test("will not move left over over the board", function() {
   board.moveLeft();
   board.moveLeft();
   board.moveLeft();
@@ -89,7 +89,7 @@ test("it will not move left over over the board", function() {
     "........\n");
 });
 
-test("it will not move right over over the board", function() {
+test("will not move right over over the board", function() {
   board.moveRight();
   board.moveRight();
   equal(board.toString(), "" +
@@ -108,8 +108,30 @@ test("it will not move right over over the board", function() {
     "........\n" +
     "........\n");
 });
-    // TODO: it will not move right over over the board
-    // TODO: it will not move down over over the board (will stop falling)
+    
+test("will not move down over over the board (will stop falling)", function() {
+  board.moveDown();
+  board.moveDown();
+  board.moveDown();
+  board.moveDown();
+  equal(board.toString(), "" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "....T...\n" +
+    "...TTT..\n");
+  ok(board.hasFalling());
+  board.moveDown();
+  equal(board.toString(), "" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "....T...\n" +
+    "...TTT..\n");
+  ok(!board.hasFalling(), "should stop falling");  
+});
     // TODO: it can not be moved left if another piece is in the way
     // TODO: it can not be moved right if another piece is in the way
     // TODO: it can not be moved down if another piece is in the way (will stop falling)
