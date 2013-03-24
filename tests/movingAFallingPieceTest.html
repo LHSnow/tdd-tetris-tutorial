@@ -132,7 +132,56 @@ test("will not move down over over the board (will stop falling)", function() {
     "...TTT..\n");
   ok(!board.hasFalling(), "should stop falling");  
 });
-    // TODO: it can not be moved left if another piece is in the way
+    
+test("can not be moved left if another piece is in the way", function() {
+  board.moveLeft();
+  board.moveLeft();
+  board.moveLeft();
+  board.tick();
+  board.tick();
+  board.tick();
+  board.tick();
+  board.tick(); //lock
+  equal(board.toString(), "" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    ".T......\n" +
+    "TTT.....\n");
+  board.drop(new Tetromino("T"));
+  board.moveLeft();
+  board.moveLeft();
+  board.moveLeft();
+  board.tick();
+  board.tick();
+  board.tick();
+  equal(board.toString(), "" +
+    "........\n" +
+    "........\n" +
+    ".T......\n" +
+    "TTT.....\n" +
+    ".T......\n" +
+    "TTT.....\n");
+  board.drop(new Tetromino("O"));
+  board.tick();
+  board.tick();
+  equal(board.toString(), "" +
+    "........\n" +
+    "........\n" +
+    ".T.OO...\n" +
+    "TTTOO...\n" +
+    ".T......\n" +
+    "TTT.....\n");
+  board.moveLeft();
+  equal(board.toString(), "" +
+    "........\n" +
+    "........\n" +
+    ".T.OO...\n" +
+    "TTTOO...\n" +
+    ".T......\n" +
+    "TTT.....\n");
+});
     // TODO: it can not be moved right if another piece is in the way
     // TODO: it can not be moved down if another piece is in the way (will stop falling)
 

@@ -64,7 +64,7 @@ Board.prototype.drop = function(block) {
 }
 
 Board.prototype.tick = function() {
-  if(this.floorCollision() || this.blockCollision()) {
+  if(this.floorCollision() || this.blockCollision("down")) {
     this.lockFalling();
   } else { 
     this.fallY++;
@@ -87,7 +87,7 @@ Board.prototype.lockFalling = function() {
 
 Board.prototype.moveLeft = function() {
   //avoid hitting left wall
-  if(this.fallX > 0) {
+  if(this.fallX > 0 && !this.blockCollision("left")) {
     this.fallX--;
   }
 }
@@ -115,13 +115,15 @@ Board.prototype.floorCollision = function() {
   return false;
 }
 
-Board.prototype.blockCollision = function() {
+Board.prototype.blockCollision = function(direction) {
   //iterate over all fixed blocks
   for(var y = 0; y < this.height; y++) {
     for(var x = 0; x < this.width; x++) {
       var fixedBlock = this.matrix[y][x];
       //check if a falling block is directly above 
-      if(fixedBlock && this.fallingBlockAt(y-1,x) != null) {
+      if(fixedBlock && direction == "down" && this.fallingBlockAt(y-1,x) != null) {
+        return true;
+      } else if(fixedBlock && direction == "left" && this.fallingBlockAt(y,x+1) != null) {
         return true;
       }
     }
