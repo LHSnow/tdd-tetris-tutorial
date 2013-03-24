@@ -82,6 +82,12 @@ Board.prototype.tick = function() {
   }
 }
 
+//hard drop brings current falling piece to the bottom
+Board.prototype.fall = function() {
+  while(this.hasFalling()) {
+    this.tick();
+  }
+}
 
 // Locks falling blocks into place by moving their indivudual blocks to this.matrix
 Board.prototype.lockFalling = function() {
