@@ -79,6 +79,7 @@ Board.prototype.tick = function() {
   if(this.collision()) {
     this.fallY--; //undo and lock
     this.lockFalling();
+    this.clear();
   }
 }
 
@@ -102,6 +103,37 @@ Board.prototype.lockFalling = function() {
     this.matrix[y][x] = this.falling;
   }
   this.falling = null;
+}
+
+Board.prototype.clear = function() {
+  var rows = this.fullRows();
+  if(rows.length > 0) {
+    var emptyRow = new Array(this.width);
+    emptyRow[0] = new Block("+");
+    emptyRow[this.width-1] = new Block("+");
+  }
+  for(var i = 0; i < rows.length; i++) {
+    this.matrix.splice(rows[i], 1);
+    this.matrix.splice(1, 0, emptyRow);
+  }
+}
+
+Board.prototype.fullRows = function() {
+  var rowIndexes = new Array();
+  //ignore first and last row
+  for(var y = this.height -2; y > 0; y--) {
+    //ignore walls
+    var full = true;
+    for(var x = 1; x < this.width -1 ; x++) {
+      if(this.matrix[y][x] == undefined) {
+        full = false; break;
+      }
+    }
+    if(full) {
+      rowIndexes.push(y);
+    }
+  }
+  return rowIndexes;
 }
 
 //move currently falling piece to the left
