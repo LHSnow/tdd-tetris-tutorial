@@ -113,7 +113,9 @@ Board.prototype.clear = function() {
     emptyRow[this.width-1] = new Block("+");
   }
   for(var i = 0; i < rows.length; i++) {
-    this.matrix.splice(rows[i], 1);
+    //add 1 to the row index for every row already removed,
+    //as one row is replaced for each removal
+    this.matrix.splice(rows[i] + i, 1);
     this.matrix.splice(1, 0, emptyRow);
   }
 }
