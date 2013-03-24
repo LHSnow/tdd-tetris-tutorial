@@ -118,18 +118,17 @@ test("it is still falling right above the other piece", function() {
   ok(board.hasFalling());
 });
 
-//        @Test
-//        public void it_stops_when_it_hits_the_other_piece() {
-//            board.tick();
-//            assertEquals("" +
-//                    "........\n" +
-//                    "........\n" +
-//                    "....T...\n" +
-//                    "...TTT..\n" +
-//                    "....T...\n" +
-//                    "...TTT..\n", board.toString());
-//            assertFalse(board.hasFalling());
-//        }
+test("it stops when it hits the other piece", function() {
+    board.tick();
+    equal(board.toString(), "" +
+            "........\n" +
+            "........\n" +
+            "....T...\n" +
+            "...TTT..\n" +
+            "....T...\n" +
+            "...TTT..\n");
+    ok(!board.hasFalling());
+});
 
 </script>
 </html> 
