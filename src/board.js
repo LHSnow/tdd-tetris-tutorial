@@ -99,7 +99,11 @@ Board.prototype.moveRight = function() {
 }
 
 Board.prototype.moveDown = function() {
-  this.fallY++;
+  if(this.floorCollision()) {
+    this.lockFalling();
+  } else {
+    this.fallY++;
+  }
 }
 
 Board.prototype.floorCollision = function() {
