@@ -30,6 +30,8 @@ Board.prototype.toString = function() {
   return str;
 }
 
+//returns a Block if there is a falling one at absolute board position y,x
+//null otherwise
 Board.prototype.fallingBlockAt = function(y,x) {
   if(!this.hasFalling()) {
     return null;
@@ -45,10 +47,12 @@ Board.prototype.fallingBlockAt = function(y,x) {
   }
 }
 
+//true if there is currently a falling piece (or block)
 Board.prototype.hasFalling = function() {
   return this.falling != null;
 }
 
+//spawn a new piece/block/tetromino onto the board
 Board.prototype.drop = function(block) {
   //at most one block may be falling at the same time
   if(this.hasFalling()) {
@@ -71,6 +75,8 @@ Board.prototype.tick = function() {
   }
 }
 
+
+// Locks falling blocks into place by moving their indivudual blocks to this.matrix
 Board.prototype.lockFalling = function() {
   var x = this.fallX;
   var y = this.fallY;
@@ -85,6 +91,7 @@ Board.prototype.lockFalling = function() {
   this.falling = null;
 }
 
+//move currently falling piece to the left
 Board.prototype.moveLeft = function() {
   //avoid hitting left wall
   if(!this.leftWallCollision() && !this.blockCollision("left")) {
@@ -92,16 +99,19 @@ Board.prototype.moveLeft = function() {
   }
 }
 
+//move currently falling piece to the right
 Board.prototype.moveRight = function() {
   if(!this.rightWallCollision() && !this.blockCollision("right")) {
     this.fallX++;
   }
 }
 
+//move currently falling piece down (as tick)
 Board.prototype.moveDown = function() {
   this.tick();
 }
 
+//true if currently falling piece has a block directly above the board floor
 Board.prototype.floorCollision = function() {
   for(var x = 0; x < this.width; x++) {
     if(this.fallingBlockAt(this.height-1,x) != null) {
@@ -112,6 +122,7 @@ Board.prototype.floorCollision = function() {
   return false;
 }
 
+//true if currently falling piece has a block directly to the right of the left wall
 Board.prototype.leftWallCollision = function() {
   for(var y = 0; y < this.height; y++) {
     if(this.fallingBlockAt(y,0) != null) {
@@ -121,6 +132,7 @@ Board.prototype.leftWallCollision = function() {
   return false;
 }
 
+//true if currently falling piece has a block directly to the left of the right wall
 Board.prototype.rightWallCollision = function() {
   for(var y = 0; y < this.height; y++) {
     if(this.fallingBlockAt(y,this.width-1) != null) {
@@ -130,6 +142,7 @@ Board.prototype.rightWallCollision = function() {
   return false;
 }
 
+//true if there is a fixed block in arg:direction of a falling block
 Board.prototype.blockCollision = function(direction) {
   //iterate over all fixed blocks
   for(var y = 0; y < this.height; y++) {
