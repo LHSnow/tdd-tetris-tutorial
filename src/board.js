@@ -124,7 +124,13 @@ Board.prototype.rotateRight = function() {
   //"try"
   this.falling.rotateRight();
   if(this.collision()) {
-    this.falling.rotateLeft();
+    //try wallkick (right first, then left as TGM)
+    this.moveRight();
+    this.moveLeft();
+    if(this.collision()) {
+      //undo
+      this.falling.rotateLeft();
+    }
   }
 }
 
@@ -132,7 +138,13 @@ Board.prototype.rotateLeft = function() {
   //"try"
   this.falling.rotateLeft();
   if(this.collision()) {
-    this.falling.rotateRight();
+    //try wallkick (right first, then left as TGM) 
+    this.moveRight();
+    this.moveLeft();
+    if(this.collision()) {
+      //undo
+      this.falling.rotateRight();
+    }
   }
 }
 

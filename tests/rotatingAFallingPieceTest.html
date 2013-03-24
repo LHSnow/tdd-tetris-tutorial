@@ -71,70 +71,6 @@ test("can be rotated next to wall", function() {
     "........\n");
 });
 
-
-test("can not be rotated when there is no room to rotate off left wall", function() {
-  board.rotateRight();
-  board.moveLeft();
-  board.moveLeft();
-  board.moveLeft();
-  board.moveLeft();
-  equal(board.toString(), "" +
-    "T.......\n" +
-    "TT......\n" +
-    "T.......\n" +
-    "........\n" +
-    "........\n" +
-    "........\n");
-  board.rotateLeft();
-  equal(board.toString(), "" +
-    "T.......\n" +
-    "TT......\n" +
-    "T.......\n" +
-    "........\n" +
-    "........\n" +
-    "........\n");
-  //try other rotation too
-  board.rotateRight();
-  equal(board.toString(), "" +
-    "T.......\n" +
-    "TT......\n" +
-    "T.......\n" +
-    "........\n" +
-    "........\n" +
-    "........\n");
-});
-
-test("can not be rotated when there is no room to rotate off right wall", function() {
-  board.rotateLeft();
-  board.moveRight();
-  board.moveRight();
-  board.moveRight();
-  equal(board.toString(), "" +
-    ".......T\n" +
-    "......TT\n" +
-    ".......T\n" +
-    "........\n" +
-    "........\n" +
-    "........\n");
-  board.rotateLeft();
-  equal(board.toString(), "" +
-    ".......T\n" +
-    "......TT\n" +
-    ".......T\n" +
-    "........\n" +
-    "........\n" +
-    "........\n");
-  //try other rotation too
-  board.rotateRight();
-  equal(board.toString(), "" +
-    ".......T\n" +
-    "......TT\n" +
-    ".......T\n" +
-    "........\n" +
-    "........\n" +
-    "........\n");
-});
-
 test("can not be rotated when there is no room to rotate off other piece", function() {
   board.tick();
   board.tick();
@@ -181,7 +117,50 @@ test("can not be rotated when there is no room to rotate off other piece", funct
     ".SSTTT..\n");
 });
 
-    // TODO: when piece is up against a wall (or piece) and it is rotated (no room to rotate), move it away from the wall ("wallkick")
+test("rotated off the left wall is moved away from the wall ('wallkicked')", function() {
+  board.rotateRight();
+  board.moveLeft();
+  board.moveLeft();
+  board.moveLeft();
+  board.moveLeft();
+  equal(board.toString(), "" +
+    "T.......\n" +
+    "TT......\n" +
+    "T.......\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
+  board.rotateLeft();
+  equal(board.toString(), "" +
+    ".T......\n" +
+    "TTT.....\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
+});
+
+test("rotated off the right wall is moved away from the wall ('wallkicked')", function() {
+  board.rotateLeft();
+  board.moveRight();
+  board.moveRight();
+  board.moveRight();
+  equal(board.toString(), "" +
+    ".......T\n" +
+    "......TT\n" +
+    ".......T\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
+  board.rotateRight();
+  equal(board.toString(), "" +
+    "......T.\n" +
+    ".....TTT\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
+});
     // See: http://bsixcentdouze.free.fr/tc/tgm-en/tgm.html
     // http://bsixcentdouze.free.fr/tc/tgm-en/img/wallkick1.png
     // http://bsixcentdouze.free.fr/tc/tgm-en/img/wallkick2.png
