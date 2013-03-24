@@ -19,6 +19,7 @@ function Board(height, width) {
 Board.prototype.toString = function() {
   var str = "";
   
+  //ignore walls in string representation
   for(var y = 1; y < this.height -1; y++) {
     for(var x = 1; x < this.width -1; x++) {
       var block = this.matrix[y][x];
