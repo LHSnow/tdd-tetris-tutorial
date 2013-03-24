@@ -43,15 +43,7 @@ Board.prototype.fallingBlockAt = function(y,x) {
   if(!this.hasFalling()) {
     return null;
   }
-  if(this.falling.size == 1) {
-    if(this.fallX == x && this.fallY == y) {
-      return this.falling;
-    } else {
-      return null;
-    }
-  } else {
-    return this.falling.blockAt(y-this.fallY,x-this.fallX);
-  }
+  return this.falling.blockAt(y-this.fallY,x-this.fallX);
 }
 
 //true if there is currently a falling piece (or block)
@@ -94,14 +86,11 @@ Board.prototype.fall = function() {
 Board.prototype.lockFalling = function() {
   var x = this.fallX;
   var y = this.fallY;
-  if(this.falling.size > 1) {
-    for(var b = 0; b < this.falling.blocks.length; b++) {
-      var block = this.falling.blocks[b];
-      this.matrix[y+block.ypos][x+block.xpos] = block;
-    }
-  } else {
-    this.matrix[y][x] = this.falling;
+  for(var b = 0; b < this.falling.blocks.length; b++) {
+    var block = this.falling.blocks[b];
+    this.matrix[y+block.ypos][x+block.xpos] = block;
   }
+  
   this.falling = null;
 }
 

@@ -61,7 +61,3 @@ Tetromino.prototype.rotateRight = function() {
   this.piece.rotateRight();
   return this;
 }
-
-Tetromino.prototype.blockPos = function() {
-  return this.piece.blockPos();
-}

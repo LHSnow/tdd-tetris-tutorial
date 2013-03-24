@@ -8,11 +8,3 @@ function Block(type) {
 Block.prototype.toString = function() {
   return this.type + '';
 }
-
-Block.prototype.moveDown = function() {
-  this.ypos++;
-}
-
-Block.prototype.freeRows = function() {
-  return 0;
-}

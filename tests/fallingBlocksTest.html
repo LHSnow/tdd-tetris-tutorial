@@ -22,6 +22,7 @@
 
 <script src="../src/board.js"></script>
 <script src="../src/block.js"></script>
+<script src="../src/piece.js"></script>
 <script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
 <script>
 
@@ -48,7 +49,7 @@ test("has no falling blocks", function() {
 module("When a block is dropped", {
   setup: function() {
     board = new Board(3,3);
-    board.drop(new Block('X'))
+    board.drop(new Piece('X'))
   }
 });
 
@@ -74,7 +75,7 @@ test("it moves down one row per tick", function() {
 
 test("at most one block may be falling at a time", function() {
     try {
-        board.drop(new Block('Y'));
+        board.drop(new Piece('Y'));
         ok(false, "exception expected"); //fail!
     } catch (e) {
         ok(e.indexOf("already falling") !== -1);
@@ -91,7 +92,7 @@ module("When a block reaches the bottom", {
   setup: function() {
     board = new Board(3,3);
     //fall to last row 
-    board.drop(new Block('X'));
+    board.drop(new Piece('X'));
     board.tick();
     board.tick();
   }
@@ -120,7 +121,7 @@ test("it stops when it hits the bottom", function() {
 module("When a block lands on another block", {
   setup: function() {
     board = new Board(3,3);
-    board.drop(new Block('X'));
+    board.drop(new Piece('X'));
     board.tick();
     board.tick();
     board.tick();
@@ -130,7 +131,7 @@ module("When a block lands on another block", {
             ".X.\n");
     ok(!board.hasFalling());
 
-    board.drop(new Block('Y'));
+    board.drop(new Piece('Y'));
     board.tick();
   }  
 });

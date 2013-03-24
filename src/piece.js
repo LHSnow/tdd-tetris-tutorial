@@ -1,7 +1,8 @@
 //Requires block.js
 
 function Piece(charMatrix) {
-  this.size = charMatrix.indexOf("\n");
+  //size 1 pieces don't have several rows in the charmatrix
+  this.size = Math.max(charMatrix.indexOf("\n"), 1);
   this.blocks = new Array();
   
   var rows = charMatrix.split("\n");
