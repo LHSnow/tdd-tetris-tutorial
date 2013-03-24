@@ -192,6 +192,7 @@ Board.prototype.rotateLeft = function() {
 }
 
 //true if any falling block shares position with any fixed block, including board walls
+//TODO: optimize to only check in the falling block area
 Board.prototype.collision = function() {
   //iterate over all fixed blocks
   for(var y = 0; y < this.height; y++) {
