@@ -109,7 +109,7 @@ test("will not move right over over the board", function() {
     "........\n");
 });
     
-test("will not move down over over the board (will stop falling)", function() {
+test("will not move down over the board (will stop falling)", function() {
   board.moveDown();
   board.moveDown();
   board.moveDown();
@@ -182,8 +182,88 @@ test("can not be moved left if another piece is in the way", function() {
     ".T......\n" +
     "TTT.....\n");
 });
-    // TODO: it can not be moved right if another piece is in the way
-    // TODO: it can not be moved down if another piece is in the way (will stop falling)
+   
+test("can not be moved right if another piece is in the way", function() {
+  board.moveRight();
+  board.moveRight();
+  board.tick();
+  board.tick();
+  board.tick();
+  board.tick();
+  board.tick(); //lock
+  equal(board.toString(), "" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "......T.\n" +
+    ".....TTT\n");
+  board.drop(new Tetromino("T"));
+  board.moveRight();
+  board.moveRight();
+  board.tick();
+  board.tick();
+  board.tick();
+  equal(board.toString(), "" +
+    "........\n" +
+    "........\n" +
+    "......T.\n" +
+    ".....TTT\n" +
+    "......T.\n" +
+    ".....TTT\n");
+  board.drop(new Tetromino("O"));
+  board.tick();
+  board.tick();
+  equal(board.toString(), "" +
+    "........\n" +
+    "........\n" +
+    "...OO.T.\n" +
+    "...OOTTT\n" +
+    "......T.\n" +
+    ".....TTT\n");
+  board.moveRight();
+  equal(board.toString(), "" +
+    "........\n" +
+    "........\n" +
+    "...OO.T.\n" +
+    "...OOTTT\n" +
+    "......T.\n" +
+    ".....TTT\n");
+});
+
+test("can not be moved down if another piece is in the way (will stop falling)", function() {
+  board.moveDown();
+  board.moveDown();
+  board.moveDown();
+  board.moveDown();
+  board.moveDown();
+  equal(board.toString(), "" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "....T...\n" +
+    "...TTT..\n");
+  board.drop(new Tetromino("T"))
+  board.moveDown();
+  board.moveDown();
+  equal(board.toString(), "" +
+    "........\n" +
+    "........\n" +
+    "....T...\n" +
+    "...TTT..\n" +
+    "....T...\n" +
+    "...TTT..\n");
+  board.moveDown();
+  equal(board.toString(), "" +
+    "........\n" +
+    "........\n" +
+    "....T...\n" +
+    "...TTT..\n" +
+    "....T...\n" +
+    "...TTT..\n");
+  ok(!board.hasFalling(), "should stop falling");  
+});
 
     // P.S. Take into consideration, that part of the piece's area may be empty cells.
     // Only non-empty cells should take part in the collision checks.

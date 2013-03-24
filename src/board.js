@@ -93,17 +93,13 @@ Board.prototype.moveLeft = function() {
 }
 
 Board.prototype.moveRight = function() {
-  if(this.fallX + this.falling.size < this.width) {
+  if((this.fallX + this.falling.size < this.width) && !this.blockCollision("right")) {
     this.fallX++;
   }
 }
 
 Board.prototype.moveDown = function() {
-  if(this.floorCollision()) {
-    this.lockFalling();
-  } else {
-    this.fallY++;
-  }
+  this.tick();
 }
 
 Board.prototype.floorCollision = function() {
@@ -125,6 +121,7 @@ Board.prototype.blockCollision = function(direction) {
         //check if a falling block is beside a fixed block in provided direction
         switch(direction) {
           case "left" : fallingBlock = this.fallingBlockAt(y,x+1); break;
+          case "right" : fallingBlock = this.fallingBlockAt(y,x-1); break;
           case "down" : //falls through to default
             default : fallingBlock = this.fallingBlockAt(y-1,x); //down
         }
