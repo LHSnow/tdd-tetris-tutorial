@@ -1,20 +1,26 @@
 function Board(height, width) {
-  this.width = width;
-  this.height = height;
+  this.width = width + 2;
+  this.height = height + 2;
   this.falling = null;
   this.fallX = 0;
   this.fallY = 0;
-  this.matrix = new Array(height);
-  for(var y = 0; y < height; y++) {
-    this.matrix[y] = new Array(width);  
+  this.matrix = new Array(this.height);
+  for(var y = 0; y < this.height; y++) {
+    this.matrix[y] = new Array(this.width);
+    for(var x = 0; x < this.width; x++) {
+      if(y == 0 || x == 0 || y == this.height -1 || x == this.width -1) {
+        //add wall block
+        this.matrix[y][x] = new Block("+");
+      }  
+    }
   }
 }
 
 Board.prototype.toString = function() {
   var str = "";
   
-  for(var y = 0; y < this.height; y++) {
-    for(var x = 0; x < this.width; x++) {
+  for(var y = 1; y < this.height -1; y++) {
+    for(var x = 1; x < this.width -1; x++) {
       var block = this.matrix[y][x];
       var fallingBlock = this.fallingBlockAt(y,x);
       if(fallingBlock != null) {
@@ -64,7 +70,7 @@ Board.prototype.drop = function(block) {
   //single block
   this.falling = block;
   this.fallX = xOffset;
-  this.fallY = 0;
+  this.fallY = 1;
 }
 
 Board.prototype.tick = function() {
