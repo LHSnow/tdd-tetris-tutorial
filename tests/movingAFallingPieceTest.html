@@ -68,10 +68,26 @@ test("can be moved down", function() {
     "........\n");  
 });
 
-    // TODO: a falling piece can be moved left
-    // TODO: a falling piece can be moved right
-    // TODO: a falling piece can be moved down
-    // TODO: it will not move left over over the board
+test("it will not move left over over the board", function() {
+  board.moveLeft();
+  board.moveLeft();
+  board.moveLeft();
+  equal(board.toString(), "" +
+    ".T......\n" +
+    "TTT.....\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
+  board.moveLeft();
+  equal(board.toString(), "" +
+    ".T......\n" +
+    "TTT.....\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
+});
     // TODO: it will not move right over over the board
     // TODO: it will not move down over over the board (will stop falling)
     // TODO: it can not be moved left if another piece is in the way
