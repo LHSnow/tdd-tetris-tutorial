@@ -112,11 +112,19 @@ Board.prototype.moveDown = function() {
 }
 
 Board.prototype.rotateRight = function() {
+  //"try"
   this.falling.rotateRight();
+  if(this.leftWallCollision() || this.rightWallCollision()) {
+    this.falling.rotateLeft();
+  }
 }
 
 Board.prototype.rotateLeft = function() {
+  //"try"
   this.falling.rotateLeft();
+  if(this.leftWallCollision() || this.rightWallCollision()) {
+    this.falling.rotateRight();
+  }
 }
 
 //true if currently falling piece has a block directly above the board floor

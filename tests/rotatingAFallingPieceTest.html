@@ -56,10 +56,86 @@ test("can be rotated counter-clockwise", function() {
     "........\n" +
     "........\n");
 });
+/*
+test("can be rotated next to wall", function() {
+  board.moveLeft();
+  board.moveLeft();
+  board.moveLeft();
+  board.rotateLeft();
+  equal(board.toString(), "" +
+    ".T......\n" +
+    "TT......\n" +
+    ".T......\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
+});
+*/
 
+test("can not be rotated when there is no room to rotate off left wall", function() {
+  board.rotateRight();
+  board.moveLeft();
+  board.moveLeft();
+  board.moveLeft();
+  board.moveLeft();
+  equal(board.toString(), "" +
+    "T.......\n" +
+    "TT......\n" +
+    "T.......\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
+  board.rotateLeft();
+  equal(board.toString(), "" +
+    "T.......\n" +
+    "TT......\n" +
+    "T.......\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
+  //try other rotation too
+  board.rotateRight();
+  equal(board.toString(), "" +
+    "T.......\n" +
+    "TT......\n" +
+    "T.......\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
+});
 
-    // TODO: it can not be rotated when there is no room to rotate (left wall, right wall, other pieces...)
+test("can not be rotated when there is no room to rotate off right wall", function() {
+  board.rotateLeft();
+  board.moveRight();
+  board.moveRight();
+  board.moveRight();
+  equal(board.toString(), "" +
+    ".......T\n" +
+    "......TT\n" +
+    ".......T\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
+  board.rotateLeft();
+  equal(board.toString(), "" +
+    ".......T\n" +
+    "......TT\n" +
+    ".......T\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
+  //try other rotation too
+  board.rotateRight();
+  equal(board.toString(), "" +
+    ".......T\n" +
+    "......TT\n" +
+    ".......T\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
+});
 
+    // TODO: as above but ...right wall, other pieces...)
     // TODO: when piece is up against a wall (or piece) and it is rotated (no room to rotate), move it away from the wall ("wallkick")
     // See: http://bsixcentdouze.free.fr/tc/tgm-en/tgm.html
     // http://bsixcentdouze.free.fr/tc/tgm-en/img/wallkick1.png
