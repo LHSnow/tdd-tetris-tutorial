@@ -120,12 +120,18 @@ Board.prototype.blockCollision = function(direction) {
   for(var y = 0; y < this.height; y++) {
     for(var x = 0; x < this.width; x++) {
       var fixedBlock = this.matrix[y][x];
-      //check if a falling block is directly above 
-      if(fixedBlock && direction == "down" && this.fallingBlockAt(y-1,x) != null) {
-        return true;
-      } else if(fixedBlock && direction == "left" && this.fallingBlockAt(y,x+1) != null) {
-        return true;
-      }
+      if(fixedBlock) {
+        var fallingBlock;
+        //check if a falling block is beside a fixed block in provided direction
+        switch(direction) {
+          case "left" : fallingBlock = this.fallingBlockAt(y,x+1); break;
+          case "down" : //falls through to default
+            default : fallingBlock = this.fallingBlockAt(y-1,x); //down
+        }
+        if(fallingBlock != null) {
+          return true;
+        }
+      }  
     }
   }
   return false;
