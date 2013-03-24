@@ -68,7 +68,6 @@ Board.prototype.tick = function() {
     var x = this.fallX;
     var y = this.fallY;
     if(this.falling.size > 1) {
-      console.log(this.falling);
       for(var b = 0; b < this.falling.blocks.length; b++) {
         var block = this.falling.blocks[b];
         this.matrix[y+block.ypos][x+block.xpos] = block;
