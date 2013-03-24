@@ -30,7 +30,7 @@ var board;
 
 module("When completed", {
   setup: function() {
-    board = new Board(7,8);
+    board = new Board(8,8);
     board.drop(new Tetromino("O"));
     board.moveLeft();
     board.fall();
@@ -58,6 +58,7 @@ module("When completed", {
     "........\n" +
     "........\n" +
     "........\n" +
+    "........\n" +
     "OOOOOO..\n" +
     "OOOOOO..\n" +
     "OOOOOO..\n" +
@@ -73,6 +74,7 @@ test("a single full row is removed and replaced by a single empty row on top of 
   board.moveRight();
   board.fall();
   equal(board.toString(), ""+
+    "........\n" +
     "........\n" +
     "........\n" +
     "........\n" +
