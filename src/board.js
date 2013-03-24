@@ -90,8 +90,8 @@ Board.prototype.boardCollision = function() {
 }
 
 Board.prototype.blockCollision = function() {
-  //iterate over all fixed blocks, starting from the bottom of the board
-  for(var y = this.height - 1; y >= 0; y--) {
+  //iterate over all fixed blocks
+  for(var y = 0; y < this.height; y++) {
     for(var x = 0; x < this.width; x++) {
       var fixedBlock = this.matrix[y][x];
       //check if a falling block is directly above 
