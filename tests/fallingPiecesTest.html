@@ -83,42 +83,40 @@ test("it stops when it hits the bottom", function() {
 });
 
 
-/*
-    public class When_a_piece_lands_on_another_piece {
+module("When a piece lands on another piece", {
+  setup: function() {
+    board = new Board(6,8);
+    board.drop(new Tetromino("T"));
+    board.tick();
+    board.tick();
+    board.tick();
+    board.tick();
+    board.tick();
+    equal(board.toString(), "" +
+            "........\n" +
+            "........\n" +
+            "........\n" +
+            "........\n" +
+            "....T...\n" +
+            "...TTT..\n");
+    ok(!board.hasFalling());
 
-        @Before
-        public void landOnAnother() {
-            board.drop(Tetromino.T_SHAPE);
-            board.tick();
-            board.tick();
-            board.tick();
-            board.tick();
-            board.tick();
-            assertEquals("" +
-                    "........\n" +
-                    "........\n" +
-                    "........\n" +
-                    "........\n" +
-                    "....T...\n" +
-                    "...TTT..\n", board.toString());
-            assertFalse(board.hasFalling());
+    board.drop(new Tetromino("T"));
+    board.tick();
+    board.tick();
+  }
+});
 
-            board.drop(Tetromino.T_SHAPE);
-            board.tick();
-            board.tick();
-        }
-
-        @Test
-        public void it_is_still_falling_right_above_the_other_piece() {
-            assertEquals("" +
-                    "........\n" +
-                    "........\n" +
-                    "....T...\n" +
-                    "...TTT..\n" +
-                    "....T...\n" +
-                    "...TTT..\n", board.toString());
-            assertTrue(board.hasFalling());
-        }
+test("it is still falling right above the other piece", function() {
+  equal(board.toString(), "" +
+          "........\n" +
+          "........\n" +
+          "....T...\n" +
+          "...TTT..\n" +
+          "....T...\n" +
+          "...TTT..\n");
+  ok(board.hasFalling());
+});
 
 //        @Test
 //        public void it_stops_when_it_hits_the_other_piece() {
@@ -132,8 +130,6 @@ test("it stops when it hits the bottom", function() {
 //                    "...TTT..\n", board.toString());
 //            assertFalse(board.hasFalling());
 //        }
-    }
-*/
 
 </script>
 </html> 
