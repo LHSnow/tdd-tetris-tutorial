@@ -93,7 +93,9 @@ Board.prototype.moveLeft = function() {
 }
 
 Board.prototype.moveRight = function() {
-  this.fallX++;
+  if(this.fallX + this.falling.size < this.width) {
+    this.fallX++;
+  }
 }
 
 Board.prototype.moveDown = function() {

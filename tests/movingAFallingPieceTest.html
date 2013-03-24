@@ -88,6 +88,26 @@ test("it will not move left over over the board", function() {
     "........\n" +
     "........\n");
 });
+
+test("it will not move right over over the board", function() {
+  board.moveRight();
+  board.moveRight();
+  equal(board.toString(), "" +
+    "......T.\n" +
+    ".....TTT\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
+  board.moveRight();
+  equal(board.toString(), "" +
+    "......T.\n" +
+    ".....TTT\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
+});
     // TODO: it will not move right over over the board
     // TODO: it will not move down over over the board (will stop falling)
     // TODO: it can not be moved left if another piece is in the way
