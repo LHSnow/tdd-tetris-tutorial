@@ -111,6 +111,14 @@ Board.prototype.moveDown = function() {
   this.tick();
 }
 
+Board.prototype.rotateRight = function() {
+  this.falling.rotateRight();
+}
+
+Board.prototype.rotateLeft = function() {
+  this.falling.rotateLeft();
+}
+
 //true if currently falling piece has a block directly above the board floor
 Board.prototype.floorCollision = function() {
   for(var x = 0; x < this.width; x++) {
