@@ -76,7 +76,7 @@ Board.prototype.drop = function(block) {
 
 Board.prototype.tick = function() {
   this.fallY++;
-  if(this.blockCollision()) {
+  if(this.collision()) {
     this.fallY--;
     this.lockFalling();
   }
@@ -102,7 +102,7 @@ Board.prototype.lockFalling = function() {
 Board.prototype.moveLeft = function() {
   //avoid hitting left wall
   this.fallX--;
-  if(this.blockCollision()) {
+  if(this.collision()) {
     this.fallX++;
   }
 }
@@ -110,7 +110,7 @@ Board.prototype.moveLeft = function() {
 //move currently falling piece to the right
 Board.prototype.moveRight = function() {
   this.fallX++
-  if(this.blockCollision()) {
+  if(this.collision()) {
     this.fallX--;
   }
 }
@@ -123,7 +123,7 @@ Board.prototype.moveDown = function() {
 Board.prototype.rotateRight = function() {
   //"try"
   this.falling.rotateRight();
-  if(this.blockCollision()) {
+  if(this.collision()) {
     this.falling.rotateLeft();
   }
 }
@@ -131,13 +131,13 @@ Board.prototype.rotateRight = function() {
 Board.prototype.rotateLeft = function() {
   //"try"
   this.falling.rotateLeft();
-  if(this.blockCollision()) {
+  if(this.collision()) {
     this.falling.rotateRight();
   }
 }
 
 //true if any falling block shares position with any fixed block, including board walls
-Board.prototype.blockCollision = function() {
+Board.prototype.collision = function() {
   //iterate over all fixed blocks
   for(var y = 0; y < this.height; y++) {
     for(var x = 0; x < this.width; x++) {
