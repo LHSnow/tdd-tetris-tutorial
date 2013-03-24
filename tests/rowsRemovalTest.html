@@ -28,18 +28,59 @@
 <script>
 var board;
 
-module("A full row", {
+module("When completed", {
   setup: function() {
-    board = new Board(6,8);
-    board.drop(new Tetromino("T"));
-    board.fall();
-    board.drop(new Tetromino("S"));
-    board.moveLeft();
+    board = new Board(7,8);
+    board.drop(new Tetromino("O"));
     board.moveLeft();
     board.fall();
-    board.drop(new Tetromino("S"));
-    console.log(board.toString());
+    board.drop(new Tetromino("O"));
+    board.moveLeft();
+    board.fall();
+    board.drop(new Tetromino("O"));
+    board.moveLeft();
+    board.moveLeft();
+    board.moveLeft();
+    board.fall();
+    board.drop(new Tetromino("O"));
+    board.moveLeft();
+    board.moveLeft();
+    board.moveLeft();
+    board.fall();
+    board.drop(new Tetromino("O"));
+    board.moveRight();
+    board.fall();
+    board.drop(new Tetromino("O"));
+    board.moveRight();
+    board.fall();
+    
+    equal(board.toString(), ""+
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "OOOOOO..\n" +
+    "OOOOOO..\n" +
+    "OOOOOO..\n" +
+    "OOOOOO..\n");
   }
+});
+
+test("a single full row is removed and replaced by a single empty row on top of the board", function() {
+  board.drop(new Tetromino("J"));
+  board.rotateLeft();
+  board.moveRight();
+  board.moveRight();
+  board.moveRight();
+  board.fall();
+  equal(board.toString(), ""+
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "OOOOOO..\n" +
+    "OOOOOO.J\n" +
+    "OOOOOO.J\n");
+    //"OOOOOOJJ\n" <- removed
 });
 
 </script>
