@@ -104,8 +104,10 @@ Board.prototype.moveDown = function() {
 
 Board.prototype.floorCollision = function() {
   //hit bottom of board?
-  if(this.fallY + this.falling.size - this.falling.freeRows() == this.height) {
-    return true;
+  for(var x = 0; x < this.width; x++) {
+    if(this.fallingBlockAt(this.height-1,x) != null) {
+      return true;
+    }
   }
 
   return false;
