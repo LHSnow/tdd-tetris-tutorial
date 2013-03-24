@@ -90,8 +90,6 @@ Board.prototype.boardCollision = function() {
 }
 
 Board.prototype.blockCollision = function() {
-  //var x = this.fallX;
-  var y = this.fallY;
   for(var y = this.height - 1; y >= 0; y--) {
     for(var x = 0; x < this.width; x++) {
       var fixedBlock = this.matrix[y][x]; 
