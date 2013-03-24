@@ -39,7 +39,6 @@ Board.prototype.fallingBlockAt = function(y,x) {
       return this.falling;
     } else {
       return null;
-
     }
   } else {
     return this.falling.blockAt(y-this.fallY,x-this.fallX);
@@ -92,10 +91,15 @@ Board.prototype.boardCollision = function() {
 }
 
 Board.prototype.blockCollision = function() {
-  var x = this.fallX;
+  //var x = this.fallX;
   var y = this.fallY;
-  if(this.matrix[y+1][x]) {
-    return true;
+  for(var y = this.height - 1; y >= 0; y--) {
+    for(var x = 0; x < this.width; x++) {
+      var fixedBlock = this.matrix[y][x]; 
+      if(fixedBlock && this.fallingBlockAt(y-1,x) != null) {
+        return true;
+      }
+    }
   }
   return false;
 }
