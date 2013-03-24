@@ -192,11 +192,12 @@ Board.prototype.rotateLeft = function() {
 }
 
 //true if any falling block shares position with any fixed block, including board walls
-//TODO: optimize to only check in the falling block area
 Board.prototype.collision = function() {
-  //iterate over all fixed blocks
-  for(var y = 0; y < this.height; y++) {
-    for(var x = 0; x < this.width; x++) {
+  //iterate over area covered by the falling shape
+  var xmax = this.fallX + this.falling.size;
+  var ymax = this.fallY + this.falling.size;
+  for(var y = this.fallY; y < ymax; y++) {
+    for(var x = this.fallX; x < xmax; x++) {
       var fixedBlock = this.matrix[y][x];
       if(fixedBlock) {
         if(this.fallingBlockAt(y,x) != null) {
