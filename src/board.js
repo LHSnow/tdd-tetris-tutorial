@@ -77,7 +77,7 @@ Board.prototype.drop = function(block) {
 Board.prototype.tick = function() {
   this.fallY++;
   if(this.collision()) {
-    this.fallY--;
+    this.fallY--; //undo and lock
     this.lockFalling();
   }
 }
@@ -100,9 +100,9 @@ Board.prototype.lockFalling = function() {
 
 //move currently falling piece to the left
 Board.prototype.moveLeft = function() {
-  //avoid hitting left wall
   this.fallX--;
   if(this.collision()) {
+    //undo
     this.fallX++;
   }
 }
@@ -111,6 +111,7 @@ Board.prototype.moveLeft = function() {
 Board.prototype.moveRight = function() {
   this.fallX++
   if(this.collision()) {
+    //undo
     this.fallX--;
   }
 }
@@ -125,6 +126,7 @@ Board.prototype.rotateRight = function() {
   this.falling.rotateRight();
   if(this.collision()) {
     //try wallkick (right first, then left as TGM)
+    //note: both move actions contain their own collision checks and will undo themselves if illegal
     this.moveRight();
     this.moveLeft();
     if(this.collision()) {
@@ -139,6 +141,7 @@ Board.prototype.rotateLeft = function() {
   this.falling.rotateLeft();
   if(this.collision()) {
     //try wallkick (right first, then left as TGM) 
+    //note: both move actions contain their own collision checks and will undo themselves if illegal
     this.moveRight();
     this.moveLeft();
     if(this.collision()) {
