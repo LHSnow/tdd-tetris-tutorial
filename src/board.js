@@ -88,7 +88,7 @@ Board.prototype.drop = function(piece) {
 Board.prototype.tick = function() {
   this.fallY++;
   if(this.collision()) {
-    this.fallY--; //undo and lock
+    this.fallY--; //undo
     this.lockFalling();
     this.clear();
     this.score();
