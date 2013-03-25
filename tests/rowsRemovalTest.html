@@ -53,6 +53,10 @@ test("one row is removed", function() {
   equal(board.lastCleared.length, 1);
 });
 
+test("score is increased by 1", function() {
+  equal(board.totalScore, 1);
+});
+
 test("removed row is replaced by an empty row on top of the board", function() {
   equal(board.toString(), ""+
     "........\n" +
@@ -92,6 +96,10 @@ test("two rows are removed", function() {
   equal(board.lastCleared.length, 2);
 });
 
+test("score is increased by 3", function() {
+  equal(board.totalScore, 3);
+});
+
 test("removed rows are replaced by empty rows on top of the board", function() {
   equal(board.toString(), ""+
     "........\n" +
@@ -127,6 +135,10 @@ module("When triple rows clear", {
 
 test("three rows are removed", function() {
   equal(board.lastCleared.length, 3);
+});
+
+test("score is increased by 5", function() {
+  equal(board.totalScore, 5);
 });
 
 test("removed rows are replaced by empty rows on top of the board", function() {
@@ -165,6 +177,10 @@ module("When quadruple (tetris) rows clear", {
 
 test("four rows are removed", function() {
   equal(board.lastCleared.length, 4);
+});
+
+test("score is increased by 8", function() {
+  equal(board.totalScore, 8);
 });
 
 test("removed rows are replaced by empty rows on top of the board", function() {

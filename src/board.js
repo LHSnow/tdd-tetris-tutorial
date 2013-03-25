@@ -3,6 +3,7 @@ function Board(height, width) {
   this.height = height + 2;
   this.falling = null;
   this.lastCleared = null;
+  this.totalScore = 0;
   this.fallX = 0;
   this.fallY = 0;
   this.matrix = new Array(this.height);
@@ -90,6 +91,7 @@ Board.prototype.tick = function() {
     this.fallY--; //undo and lock
     this.lockFalling();
     this.clear();
+    this.score();
   }
 }
 
@@ -126,6 +128,15 @@ Board.prototype.clear = function() {
     this.matrix.splice(1, 0, emptyRow);
   }
   this.lastCleared = rows;
+}
+
+Board.prototype.score = function() {
+  switch(this.lastCleared.length) {
+    case 1 : this.totalScore += 1; break;
+    case 2 : this.totalScore += 3; break;
+    case 3 : this.totalScore += 5; break;
+    case 4 : this.totalScore += 8; break;
+  }
 }
 
 Board.prototype.fullRows = function() {
