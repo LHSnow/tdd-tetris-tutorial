@@ -2,7 +2,7 @@ function Board(height, width) {
   this.width = width + 2;
   this.height = height + 2;
   this.falling = null;
-  this.lastCleared = null;
+  this.lastCleared = new Array(0);
   this.totalScore = 0;
   this.fallX = 0;
   this.fallY = 0;
@@ -114,6 +114,7 @@ Board.prototype.lockFalling = function() {
   this.falling = null;
 }
 
+//clears/replaces full rows and sets lastCleared to an array of indices
 Board.prototype.clear = function() {
   var rows = this.fullRows();
   if(rows.length > 0) {
@@ -130,6 +131,7 @@ Board.prototype.clear = function() {
   this.lastCleared = rows;
 }
 
+//adds to total score depending on the length of lastCleared
 Board.prototype.score = function() {
   switch(this.lastCleared.length) {
     case 1 : this.totalScore += 1; break;
