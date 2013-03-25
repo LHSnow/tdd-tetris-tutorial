@@ -49,7 +49,7 @@ Board.prototype.fromString = function(charMatrix) {
   
   for(var y = 0; y < height; y++) {
     if(rows[y].length != width) {
-      throw "row "+y+" has a different width than row 0";;  
+      throw "row "+y+" has a different width than row 0";  
     }
     for(var x = 0; x < width; x++) {
       var type = rows[y].charAt(x);
