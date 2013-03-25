@@ -2,6 +2,7 @@ function Board(height, width) {
   this.width = width + 2;
   this.height = height + 2;
   this.falling = null;
+  this.lastCleared = null;
   this.fallX = 0;
   this.fallY = 0;
   this.matrix = new Array(this.height);
@@ -124,6 +125,7 @@ Board.prototype.clear = function() {
     this.matrix.splice(rows[i] + i, 1);
     this.matrix.splice(1, 0, emptyRow);
   }
+  this.lastCleared = rows;
 }
 
 Board.prototype.fullRows = function() {

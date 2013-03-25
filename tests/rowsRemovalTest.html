@@ -49,7 +49,11 @@ module("When a single row clears", {
   }
 });
 
-test("a row is removed and replaced by an empty row on top of the board", function() {
+test("one row is removed", function() {
+  equal(board.lastCleared.length, 1);
+});
+
+test("removed row is replaced by an empty row on top of the board", function() {
   equal(board.toString(), ""+
     "........\n" +
     "........\n" +
@@ -61,6 +65,8 @@ test("a row is removed and replaced by an empty row on top of the board", functi
     ".......J\n");
     //"OOOOOOJJ\n" <- removed
 });
+
+
 
 module("When double rows clear", {
   setup: function() {
