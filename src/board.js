@@ -45,9 +45,13 @@ Board.prototype.toString = function() {
 Board.prototype.fromString = function(charMatrix) {
   var height = charMatrix.indexOf("\n");
   var rows = charMatrix.split("\n");
+  var width = rows[0].length;
   
   for(var y = 0; y < height; y++) {
-    for(var x = 0; x < rows[y].length; x++) {
+    if(rows[y].length != width) {
+      throw "row "+y+" has a different width than row 0";;  
+    }
+    for(var x = 0; x < width; x++) {
       var type = rows[y].charAt(x);
       if(type != ".") {
         this.matrix[y+1][x+1] = new Block(type);
