@@ -88,7 +88,11 @@ module("When double rows clear", {
   }
 });
 
-test("two rows are removed and replaced by two empty rows on top of the board", function() {
+test("two rows are removed", function() {
+  equal(board.lastCleared.length, 2);
+});
+
+test("removed rows are replaced by empty rows on top of the board", function() {
   equal(board.toString(), ""+
     "........\n" +
     "........\n" +
@@ -121,7 +125,11 @@ module("When triple rows clear", {
   }
 });
 
-test("three rows are removed and replaced by three empty rows on top of the board", function() {
+test("three rows are removed", function() {
+  equal(board.lastCleared.length, 3);
+});
+
+test("removed rows are replaced by empty rows on top of the board", function() {
   equal(board.toString(), ""+
     "........\n" +
     "........\n" +
@@ -155,7 +163,11 @@ module("When quadruple (tetris) rows clear", {
   }
 });
 
-test("three rows are removed and replaced by three empty rows on top of the board", function() {
+test("four rows are removed", function() {
+  equal(board.lastCleared.length, 4);
+});
+
+test("removed rows are replaced by empty rows on top of the board", function() {
   equal(board.toString(), ""+
     "........\n" +
     "........\n" +
