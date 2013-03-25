@@ -28,33 +28,10 @@
 <script>
 var board;
 
-module("When completed", {
+module("When rows clear", {
   setup: function() {
     board = new Board(8,8);
-    board.drop(new Tetromino("O"));
-    board.moveLeft();
-    board.fall();
-    board.drop(new Tetromino("O"));
-    board.moveLeft();
-    board.fall();
-    board.drop(new Tetromino("O"));
-    board.moveLeft();
-    board.moveLeft();
-    board.moveLeft();
-    board.fall();
-    board.drop(new Tetromino("O"));
-    board.moveLeft();
-    board.moveLeft();
-    board.moveLeft();
-    board.fall();
-    board.drop(new Tetromino("O"));
-    board.moveRight();
-    board.fall();
-    board.drop(new Tetromino("O"));
-    board.moveRight();
-    board.fall();
-    
-    equal(board.toString(), ""+
+    board.fromString(""+
     "........\n" +
     "........\n" +
     "........\n" +
@@ -66,7 +43,7 @@ module("When completed", {
   }
 });
 
-test("a single full row is removed and replaced by a single empty row on top of the board", function() {
+test("a row is removed and replaced by an empty row on top of the board", function() {
   board.drop(new Tetromino("J"));
   board.rotateLeft();
   board.moveRight();
@@ -85,7 +62,7 @@ test("a single full row is removed and replaced by a single empty row on top of 
     //"OOOOOOJJ\n" <- removed
 });
 
-test("a double full row is removed and replaced by two empty rows on top of the board", function() {
+test("a double row is removed and replaced by two empty rows on top of the board", function() {
   board.drop(new Tetromino("O"));
   board.moveRight();
   board.moveRight();
@@ -102,6 +79,33 @@ test("a double full row is removed and replaced by two empty rows on top of the 
     "OOOOOO..\n");
     //"OOOOOOOO\n" <- removed
     //"OOOOOOOO\n" <- removed
+});
+
+test("a triple row is removed and replaced by three empty rows on top of the board", function() {
+  board.fromString(""+
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "OOOOOO..\n" +
+    "OOOOOOO.\n" +
+    "OOOOOOO.\n" +
+    "OOOOOOO.\n");
+  board.drop(new Tetromino("L"));
+  board.rotateLeft();
+  board.moveRight();
+  board.moveRight();
+  board.moveRight();
+  board.fall();
+  equal(board.toString(), ""+
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "OOOOOOO.\n");
 });
 
 </script>

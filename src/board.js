@@ -37,6 +37,23 @@ Board.prototype.toString = function() {
   return str;
 }
 
+//create a board with pre-fixed blocks from a string representation
+//@param charMatrix should not contain walls
+//utility method to ease testing (and possible b-mode and saved games)
+Board.prototype.fromString = function(charMatrix) {
+  var height = charMatrix.indexOf("\n");
+  var rows = charMatrix.split("\n");
+  
+  for(var y = 0; y < height; y++) {
+    for(var x = 0; x < rows[y].length; x++) {
+      var type = rows[y].charAt(x);
+      if(type != ".") {
+        this.matrix[y+1][x+1] = new Block(type);
+      }
+    }
+  }
+}
+
 //returns a Block if there is a falling one at absolute board position y,x
 //null otherwise
 Board.prototype.fallingBlockAt = function(y,x) {
