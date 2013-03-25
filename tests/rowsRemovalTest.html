@@ -28,7 +28,7 @@
 <script>
 var board;
 
-module("When rows clear", {
+module("When a single row clears", {
   setup: function() {
     board = new Board(8,8);
     board.fromString(""+
@@ -36,39 +36,36 @@ module("When rows clear", {
     "........\n" +
     "........\n" +
     "........\n" +
-    "OOOOOO..\n" +
-    "OOOOOO..\n" +
-    "OOOOOO..\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
     "OOOOOO..\n");
+    board.drop(new Tetromino("J"));
+    board.rotateLeft();
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    board.fall();
   }
 });
 
 test("a row is removed and replaced by an empty row on top of the board", function() {
-  board.drop(new Tetromino("J"));
-  board.rotateLeft();
-  board.moveRight();
-  board.moveRight();
-  board.moveRight();
-  board.fall();
   equal(board.toString(), ""+
     "........\n" +
     "........\n" +
     "........\n" +
     "........\n" +
     "........\n" +
-    "OOOOOO..\n" +
-    "OOOOOO.J\n" +
-    "OOOOOO.J\n");
+    "........\n" +
+    ".......J\n" +
+    ".......J\n");
     //"OOOOOOJJ\n" <- removed
 });
 
-test("a double row is removed and replaced by two empty rows on top of the board", function() {
-  board.drop(new Tetromino("O"));
-  board.moveRight();
-  board.moveRight();
-  board.moveRight();
-  board.fall();
-  equal(board.toString(), ""+
+module("When double rows clear", {
+  setup: function() {
+    board = new Board(8,8);
+    board.fromString(""+
     "........\n" +
     "........\n" +
     "........\n" +
@@ -77,26 +74,15 @@ test("a double row is removed and replaced by two empty rows on top of the board
     "........\n" +
     "OOOOOO..\n" +
     "OOOOOO..\n");
-    //"OOOOOOOO\n" <- removed
-    //"OOOOOOOO\n" <- removed
+    board.drop(new Tetromino("O"));
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    board.fall();
+  }
 });
 
-test("a triple row is removed and replaced by three empty rows on top of the board", function() {
-  board.fromString(""+
-    "........\n" +
-    "........\n" +
-    "........\n" +
-    "........\n" +
-    "OOOOOO..\n" +
-    "OOOOOOO.\n" +
-    "OOOOOOO.\n" +
-    "OOOOOOO.\n");
-  board.drop(new Tetromino("L"));
-  board.rotateLeft();
-  board.moveRight();
-  board.moveRight();
-  board.moveRight();
-  board.fall();
+test("two rows are removed and replaced by two empty rows on top of the board", function() {
   equal(board.toString(), ""+
     "........\n" +
     "........\n" +
@@ -105,7 +91,74 @@ test("a triple row is removed and replaced by three empty rows on top of the boa
     "........\n" +
     "........\n" +
     "........\n" +
+    "........\n");
+});
+
+module("When triple rows clear", {
+  setup: function() {
+    board = new Board(8,8);
+    board.fromString(""+
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "OOOOOO..\n" +
+    "OOOOOOO.\n" +
     "OOOOOOO.\n");
+    board.drop(new Tetromino("L"));
+    board.rotateLeft();
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    board.fall();
+  }
+});
+
+test("three rows are removed and replaced by three empty rows on top of the board", function() {
+  equal(board.toString(), ""+
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
+});
+
+module("When quadruple (tetris) rows clear", {
+  setup: function() {
+    board = new Board(8,8);
+    board.fromString(""+
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "OOOOOOI.\n" +
+    "OOOOOOI.\n" +
+    "OOOOOOI.\n" +
+    "OOOOOOI.\n");
+    board.drop(new Tetromino("I"));
+    board.rotateLeft();
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    board.fall();
+  }
+});
+
+test("three rows are removed and replaced by three empty rows on top of the board", function() {
+  equal(board.toString(), ""+
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n" +
+    "........\n");
 });
 
 </script>
