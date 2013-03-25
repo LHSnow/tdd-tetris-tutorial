@@ -52,16 +52,16 @@ Board.prototype.hasFalling = function() {
 }
 
 //spawn a new piece/block/tetromino onto the board
-Board.prototype.drop = function(block) {
+Board.prototype.drop = function(piece) {
   //at most one block may be falling at the same time
   if(this.hasFalling()) {
     throw "already falling";
   }
   
   //find horizontal centre of board
-  var xOffset = Math.floor(this.width / 2) - Math.floor(block.size / 2);
+  var xOffset = Math.floor(this.width / 2) - Math.floor(piece.size / 2);
   //single block
-  this.falling = block;
+  this.falling = piece;
   this.fallX = xOffset;
   this.fallY = 1;
 }
