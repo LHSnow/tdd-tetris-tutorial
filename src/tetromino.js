@@ -37,7 +37,8 @@ function Tetromino(shape) {
                     "..L\n" +
                     "LLL\n" +
                     "...\n"); 
-                    break;                                       
+                    break;
+    default : throw "No such shape as '"+shape+"'";                                       
   }
   //for Board.js access (pseudo-abstract fields of Piece);
   this.size = this.piece.size; 
