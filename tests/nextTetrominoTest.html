@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<!--
+  Copyright (c) 2008-2012  Esko Luontola <www.orfjackal.net> and Lars Bergström <harhund.com>
+  You may use and modify this source code freely for personal non-commercial use.
+  This source code may NOT be used as course material without prior written agreement.
+
+  @author Esko Luontola <www.orfjackal.net> (original Java/junit examples)
+  @author Lars Bergström <harhund.com> (adaptation to Javascript/qunit)
+-->
+ 
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Next tetromino test</title>
+  <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.11.0.css">
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+</body>
+
+<script src="../src/bag.js"></script>
+<script src="../src/tetromino.js"></script>
+<script src="../src/piece.js"></script>
+<script src="../src/block.js"></script>
+<script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
+<script>
+var bag;
+var tetromino;
+
+module("A new tetromino bag", {
+  setup: function() {
+    bag = new TetrominoBag();
+  }
+});
+
+test("does not have a record of previous pieces", function() {
+  equal(bag.history.length, 0);
+});
+
+module("Picking a tetromino from the bag", {
+  setup: function() {
+    bag = new TetrominoBag();
+    tetromino = bag.pick();
+  }
+});
+
+test("returns a random tetromino", function() {
+  var shapes = ["T", "O", "I", "S", "Z", "L", "J"];
+  ok(shapes.indexOf(tetromino.shape) > -1);
+});
+
+test("adds it to bag history", function() {
+  equal(bag.history.length, 1);
+  equal(bag.history[0], tetromino.shape);
+});
+
+test("removes oldest history item if history exceeds 4 shapes", function() {
+  var picked = new Array();
+  picked.push(tetromino);
+  for(var t = 0; t < 4; t++) {
+    picked.push(bag.pick());
+  }
+  equal(bag.history.length, 4);
+  for(var t = 0; t < 4; t++) {
+    equal(bag.history[t], picked[t + 1].shape);
+  }
+});
+
+module("Peeking into the bag", {
+  setup: function() {
+    bag = new TetrominoBag();
+    tetromino = bag.peek();
+  }
+});
+
+test("reveals next item to be picked", function() {
+  equal(bag.pick().shape, tetromino.shape);
+});
+
+test("does not change the outcome of the next peek", function() {
+  for(var i = 0; i < 10; i++) {
+    equal(bag.peek().shape, tetromino.shape);
+  }
+});
+
+</script>
+</html> 
