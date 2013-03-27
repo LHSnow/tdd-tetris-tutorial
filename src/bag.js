@@ -23,12 +23,14 @@ TetrominoBag.prototype.peek = function() {
 }
 
 //not tested, as the outcome is random
+//as in TGM rules, a piece is less likely to be returned if is currently stored in bag history
 TetrominoBag.prototype.spawn = function() {
   var rand, tetromino;
   for(var i = 0; i < 4; i++) {
     rand = Math.floor(Math.random() * 7);
     tetromino = new Tetromino(this.shapes[rand]);
-    if(this.history.indexOf(tetromino.shape > -1)) {
+    //if not in history
+    if(this.history.indexOf(tetromino.shape == -1)) {
       break;
     }
   }
