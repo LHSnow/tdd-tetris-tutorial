@@ -1,4 +1,4 @@
-describe("A new board", {
+describe("A new board", function(){
   var board;
   beforeEach(function() {
     board = new Board(3,3);
@@ -19,7 +19,7 @@ describe("A new board", {
 
 
 
-describe("When a block is dropped", {
+describe("When a block is dropped", function(){
   var board;
   beforeEach(function() {
     board = new Board(3,3);
@@ -50,18 +50,18 @@ describe("When a block is dropped", {
           board.drop(new Piece('Y'));
           expect(false).toBe(true, "exception expected");
       } catch (e) {
-          expect(e.indexOf("already falling")).toBe(-1);
+          expect(e).toContain("already falling");
       }
       expect(board.toString()).toEqual( "" +
               ".X.\n" +
               "...\n" +
-              "...\n"));
+              "...\n");
   });
 });
 
 
 
-describe("When a block reaches the bottom", {
+describe("When a block reaches the bottom", function(){
   var board;
 
   beforeEach(function() {
@@ -93,7 +93,7 @@ describe("When a block reaches the bottom", {
 
 
 
-describe("When a block lands on another block", {
+describe("When a block lands on another block", function(){
   var board;
   beforeEach(function() {
     board = new Board(3,3);
