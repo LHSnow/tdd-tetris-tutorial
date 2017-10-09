@@ -4,7 +4,7 @@ describe('Falling blocks', function() {
         var board;
         beforeEach(function() {
             board = new Board(3, 3);
-        })
+        });
 
         it("is empty", function() {
             expect(board.toString()).toEqual("" +
