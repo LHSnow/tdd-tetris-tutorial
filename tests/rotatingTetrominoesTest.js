@@ -1,22 +1,5 @@
 describe("Rotating tetrominoes", function() {
 
-    /*
-    describe("All shape instances", function() {
-      setup: function() {
-        shape = new Tetromino("T");
-      }
-    });
-
-    it("are immutable",  function() {
-        var original = shape.toString();
-        shape.rotateRight();
-        expect(original).toEqual( shape.toString());
-        shape.rotateLeft();
-        expect(original).toEqual( shape.toString());
-      }
-    );
-    */
-
     describe("The T shape", function() {
         var shape;
         beforeEach(function() {
