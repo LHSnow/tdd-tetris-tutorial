@@ -1,4 +1,4 @@
-import {Tetromino} from './tetromino'
+import {Tetromino} from './piece'
 
 describe("Rotating tetrominoes", function() {
 

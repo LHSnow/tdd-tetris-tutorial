@@ -1,5 +1,5 @@
 import {Board} from "./board";
-import {Tetromino} from "./tetromino";
+import {Tetromino} from "./piece";
 
 describe('Falling pieces', function() {
     describe("When a piece is dropped", function() {

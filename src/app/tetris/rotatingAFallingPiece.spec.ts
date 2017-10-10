@@ -1,5 +1,5 @@
 import {Board} from './board'
-import {Tetromino} from './tetromino'
+import {Tetromino} from './piece'
 
 describe("Rotating a falling piece", function() {
     describe("A falling piece", function() {

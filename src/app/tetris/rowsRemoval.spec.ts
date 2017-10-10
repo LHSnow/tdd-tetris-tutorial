@@ -1,5 +1,5 @@
 import {Board} from './board'
-import {Tetromino} from './tetromino'
+import {Tetromino} from './piece'
 
 describe("Rows removal", function() {
     describe("When a single row clears", function() {

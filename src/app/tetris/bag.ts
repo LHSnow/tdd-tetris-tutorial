@@ -1,4 +1,4 @@
-import {Tetromino} from "./tetromino";
+import {Tetromino} from "./piece";
 
 const SHAPES = ["T", "O", "I", "S", "Z", "L", "J"];
 
