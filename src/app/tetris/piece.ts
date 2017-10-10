@@ -7,7 +7,7 @@ export class Block {
 }
 
 export class Piece {
-    public blocks: Block[];
+    blocks: Block[];
     size: number;
 
     constructor(charMatrix) {

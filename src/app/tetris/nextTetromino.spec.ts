@@ -29,7 +29,7 @@ describe('Next tetromino', function() {
 
         it("adds it to bag history", function() {
             expect(bag.history.length).toBe(1);
-            expect(bag.history[0]).toEqual(tetromino.shape);
+            expect(bag.history[0]).toEqual(tetromino);
         });
 
         it("removes oldest history item if history exceeds 4 shapes", function() {
@@ -40,7 +40,7 @@ describe('Next tetromino', function() {
             }
             expect(bag.history.length).toBe(4);
             for (let t = 0; t < 4; t++) {
-                expect(bag.history[t]).toEqual(picked[t + 1].shape);
+                expect(bag.history[t]).toEqual(picked[t + 1]);
             }
         });
     });
@@ -55,12 +55,12 @@ describe('Next tetromino', function() {
         });
 
         it("reveals next item to be picked", function() {
-            expect(bag.pick().shape).toEqual(tetromino.shape);
+            expect(bag.pick()).toEqual(tetromino);
         });
 
         it("does not change the outcome of the next peek", function() {
             for (let i = 0; i < 10; i++) {
-                expect(bag.peek().shape).toEqual(tetromino.shape);
+                expect(bag.peek()).toEqual(tetromino);
             }
         });
     });

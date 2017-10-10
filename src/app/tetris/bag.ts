@@ -14,7 +14,7 @@ export class TetrominoBag {
     //pick the next piece from the bag, recording and replacing it
     pick() {
         let tetromino = this.peek();
-        this.history.push(tetromino.shape);
+        this.history.push(tetromino);
         if (this.history.length > 4) {
             this.history.splice(0, 1);
         }
