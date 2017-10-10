@@ -1,6 +1,9 @@
+import {Board} from './board'
+import {Tetromino} from './tetromino'
+
 describe("Rotating a falling piece", function() {
     describe("A falling piece", function() {
-        var board;
+        let board;
         beforeEach(function() {
             board = new Board(6, 8);
             board.drop(new Tetromino("T"));

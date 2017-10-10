@@ -1,7 +1,9 @@
+import {Tetromino} from './tetromino'
+
 describe("Rotating tetrominoes", function() {
 
     describe("The T shape", function() {
-        var shape;
+        let shape;
         beforeEach(function() {
             shape = new Tetromino("T");
         });
@@ -50,7 +52,7 @@ describe("Rotating tetrominoes", function() {
         });
 
         it("rotating it 4 times will go back to the original shape", function() {
-            var originalShape = shape.toString();
+            let originalShape = shape.toString();
             shape = shape.rotateRight().rotateRight().rotateRight().rotateRight();
             expect(shape.toString()).toEqual(originalShape);
             shape = shape.rotateLeft().rotateLeft().rotateLeft().rotateLeft();
@@ -59,7 +61,7 @@ describe("Rotating tetrominoes", function() {
     });
 
     describe("The I shape", function() {
-        var shape;
+        let shape;
         beforeEach(function() {
             shape = new Tetromino("I");
         });
@@ -91,7 +93,7 @@ describe("Rotating tetrominoes", function() {
         });
 
         it("rotating it twice left will drop it down one line", function() {
-            var expectedShape = "" +
+            let expectedShape = "" +
                 "....\n" +
                 "....\n" +
                 "IIII\n" +
@@ -101,7 +103,7 @@ describe("Rotating tetrominoes", function() {
         });
 
         it("rotating it twice right will drop it down one line", function() {
-            var expectedShape = "" +
+            let expectedShape = "" +
                 "....\n" +
                 "....\n" +
                 "IIII\n" +
@@ -111,13 +113,13 @@ describe("Rotating tetrominoes", function() {
         });
 
         it("rotating it 4 times left will bring back the original shape", function() {
-            var originalShape = shape.toString();
+            let originalShape = shape.toString();
             shape = shape.rotateLeft().rotateLeft().rotateLeft().rotateLeft();
             expect(shape.toString()).toEqual(originalShape);
         });
 
         it("rotating it 4 times right will bring back the original shape", function() {
-            var originalShape = shape.toString();
+            let originalShape = shape.toString();
             shape = shape.rotateRight().rotateRight().rotateRight().rotateRight();
             expect(shape.toString()).toEqual(originalShape);
         });
@@ -125,7 +127,7 @@ describe("Rotating tetrominoes", function() {
 
 
     describe("The O shape", function() {
-        var shape;
+        let shape;
         beforeEach(function() {
             shape = new Tetromino("O");
         });
@@ -152,7 +154,7 @@ describe("Rotating tetrominoes", function() {
     });
 
     describe("The S shape", function() {
-        var shape;
+        let shape;
         beforeEach(function() {
             shape = new Tetromino("S");
         });
@@ -183,7 +185,7 @@ describe("Rotating tetrominoes", function() {
         });
 
         it("rotating it 4 times will go back to the original shape", function() {
-            var originalShape = shape.toString();
+            let originalShape = shape.toString();
             shape = shape.rotateRight().rotateRight().rotateRight().rotateRight();
             expect(shape.toString()).toEqual(originalShape);
             shape = shape.rotateLeft().rotateLeft().rotateLeft().rotateLeft();
@@ -193,7 +195,7 @@ describe("Rotating tetrominoes", function() {
     });
 
     describe("The Z shape", function() {
-        var shape;
+        let shape;
         beforeEach(function() {
             shape = new Tetromino("Z");
         });
@@ -224,7 +226,7 @@ describe("Rotating tetrominoes", function() {
         });
 
         it("rotating it 4 times will go back to the original shape", function() {
-            var originalShape = shape.toString();
+            let originalShape = shape.toString();
             shape = shape.rotateRight().rotateRight().rotateRight().rotateRight();
             expect(shape.toString()).toEqual(originalShape);
             shape = shape.rotateLeft().rotateLeft().rotateLeft().rotateLeft();
@@ -234,6 +236,7 @@ describe("Rotating tetrominoes", function() {
 
 
     describe("The J shape", function() {
+        let shape;
         beforeEach(function() {
             shape = new Tetromino("J");
         });
@@ -264,7 +267,7 @@ describe("Rotating tetrominoes", function() {
         });
 
         it("rotating it 4 times will go back to the original shape", function() {
-            var originalShape = shape.toString();
+            let originalShape = shape.toString();
             shape = shape.rotateRight().rotateRight().rotateRight().rotateRight();
             expect(shape.toString()).toEqual(originalShape);
             shape = shape.rotateLeft().rotateLeft().rotateLeft().rotateLeft();
@@ -274,7 +277,7 @@ describe("Rotating tetrominoes", function() {
     });
 
     describe("The L shape", function() {
-        var shape;
+        let shape;
         beforeEach(function() {
             shape = new Tetromino("L");
         });
@@ -305,7 +308,7 @@ describe("Rotating tetrominoes", function() {
         });
 
         it("rotating it 4 times will go back to the original shape", function() {
-            var originalShape = shape.toString();
+            let originalShape = shape.toString();
             shape = shape.rotateRight().rotateRight().rotateRight().rotateRight();
             expect(shape.toString()).toEqual(originalShape);
             shape = shape.rotateLeft().rotateLeft().rotateLeft().rotateLeft();

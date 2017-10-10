@@ -1,7 +1,10 @@
+import {Board} from "./board";
+import {Piece} from "./piece";
+
 describe('Falling blocks', function() {
 
     describe("A new board", function() {
-        var board;
+        let board;
         beforeEach(function() {
             board = new Board(3, 3);
         });
@@ -19,7 +22,7 @@ describe('Falling blocks', function() {
     });
 
     describe("When a block is dropped", function() {
-        var board;
+        let board;
         beforeEach(function() {
             board = new Board(3, 3);
             board.drop(new Piece('X'))
@@ -60,7 +63,7 @@ describe('Falling blocks', function() {
 
 
     describe("When a block reaches the bottom", function() {
-        var board;
+        let board;
 
         beforeEach(function() {
             board = new Board(3, 3);
@@ -90,7 +93,7 @@ describe('Falling blocks', function() {
 
 
     describe("When a block lands on another block", function() {
-        var board;
+        let board;
         beforeEach(function() {
             board = new Board(3, 3);
             board.drop(new Piece('X'));

@@ -1,6 +1,9 @@
+import {Board} from "./board";
+import {Tetromino} from "./tetromino";
+
 describe('Falling pieces', function() {
     describe("When a piece is dropped", function() {
-        var board;
+        let board;
         beforeEach(function() {
             board = new Board(6, 8);
             board.drop(new Tetromino("T"));
@@ -18,7 +21,7 @@ describe('Falling pieces', function() {
     });
 
     describe("When a piece reaches the bottom", function() {
-        var board;
+        let board;
         beforeEach(function() {
             board = new Board(6, 8);
             board.drop(new Tetromino("T"));
@@ -54,7 +57,7 @@ describe('Falling pieces', function() {
 
 
     describe("When a piece lands on another piece", function() {
-        var board;
+        let board;
         beforeEach(function() {
             board = new Board(6, 8);
             board.drop(new Tetromino("T"));

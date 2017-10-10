@@ -1,7 +1,8 @@
+import {TetrominoBag} from "./bag";
+
 describe('Next tetromino', function() {
     describe("A new tetromino bag", function() {
-        var bag;
-        var tetromino;
+        let bag;
 
         beforeEach(function() {
             bag = new TetrominoBag();
@@ -13,8 +14,8 @@ describe('Next tetromino', function() {
     });
 
     describe("Picking a tetromino from the bag", function() {
-        var bag;
-        var tetromino;
+        let bag;
+        let tetromino;
 
         beforeEach(function() {
             bag = new TetrominoBag();
@@ -22,7 +23,7 @@ describe('Next tetromino', function() {
         });
 
         it("returns a random tetromino", function() {
-            var shapes = ["T", "O", "I", "S", "Z", "L", "J"];
+            let shapes = ["T", "O", "I", "S", "Z", "L", "J"];
             expect(shapes).toContain(tetromino.shape);
         });
 
@@ -32,21 +33,21 @@ describe('Next tetromino', function() {
         });
 
         it("removes oldest history item if history exceeds 4 shapes", function() {
-            var picked = [];
+            let picked = [];
             picked.push(tetromino);
-            for (var t = 0; t < 4; t++) {
+            for (let t = 0; t < 4; t++) {
                 picked.push(bag.pick());
             }
             expect(bag.history.length).toBe(4);
-            for (var t = 0; t < 4; t++) {
+            for (let t = 0; t < 4; t++) {
                 expect(bag.history[t]).toEqual(picked[t + 1].shape);
             }
         });
     });
 
     describe("Peeking into the bag", function() {
-        var bag;
-        var tetromino;
+        let bag;
+        let tetromino;
 
         beforeEach(function() {
             bag = new TetrominoBag();
@@ -58,7 +59,7 @@ describe('Next tetromino', function() {
         });
 
         it("does not change the outcome of the next peek", function() {
-            for (var i = 0; i < 10; i++) {
+            for (let i = 0; i < 10; i++) {
                 expect(bag.peek().shape).toEqual(tetromino.shape);
             }
         });

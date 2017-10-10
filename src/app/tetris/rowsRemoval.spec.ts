@@ -1,6 +1,9 @@
+import {Board} from './board'
+import {Tetromino} from './tetromino'
+
 describe("Rows removal", function() {
     describe("When a single row clears", function() {
-        var board;
+        let board;
         beforeEach(function() {
             board = new Board(8, 8);
             board.fromString("" +
@@ -43,7 +46,7 @@ describe("Rows removal", function() {
     });
 
     describe("When double rows clear", function() {
-        var board;
+        let board;
         beforeEach(function() {
             board = new Board(8, 8);
             board.fromString("" +
@@ -84,7 +87,7 @@ describe("Rows removal", function() {
     });
 
     describe("When triple rows clear", function() {
-        var board;
+        let board;
         beforeEach(function() {
             board = new Board(8, 8);
             board.fromString("" +
@@ -126,7 +129,7 @@ describe("Rows removal", function() {
     });
 
     describe("When quadruple (tetris) rows clear", function() {
-        var board;
+        let board;
         beforeEach(function() {
             board = new Board(8, 8);
             board.fromString("" +

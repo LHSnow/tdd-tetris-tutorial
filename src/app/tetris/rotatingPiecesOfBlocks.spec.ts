@@ -1,3 +1,5 @@
+import {Piece} from './piece'
+
 describe("Rotating pieces of blocks", function() {
 
     describe("A piece of 3x3 blocks", function() {
