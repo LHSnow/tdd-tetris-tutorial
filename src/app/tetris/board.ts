@@ -151,20 +151,8 @@ export class Board {
 
     //adds to total score depending on the length of lastCleared
     score() {
-        switch (this.lastCleared.length) {
-            case 1 :
-                this.totalScore += 1;
-                break;
-            case 2 :
-                this.totalScore += 3;
-                break;
-            case 3 :
-                this.totalScore += 5;
-                break;
-            case 4 :
-                this.totalScore += 8;
-                break;
-        }
+        const score = [0,1,3,5,8];
+        this.totalScore += score[this.lastCleared.length];
     }
 
     fullRows() {
