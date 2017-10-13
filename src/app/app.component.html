@@ -1,2 +1,9 @@
-<app-game></app-game>
-
+<table>
+    <tbody>
+        <tr *ngFor="let row of board.matrix">
+            <td *ngFor="let column of row">
+                {{column}}
+            </td>
+        </tr>
+    </tbody>
+</table>

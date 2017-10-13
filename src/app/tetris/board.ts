@@ -1,8 +1,8 @@
 import {Block, Piece} from "./piece";
 
 export class Board {
-    public width: number;
-    public height: number;
+    width: number;
+    height: number;
     falling: Piece;
     lastCleared: number[];
     totalScore: number;
