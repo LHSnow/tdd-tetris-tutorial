@@ -1,6 +1,4 @@
-import {Tetromino} from "./piece";
-
-const SHAPES = ["T", "O", "I", "S", "Z", "L", "J"];
+import {TETROMINOES, Tetromino} from "./piece";
 
 export class TetrominoBag {
     history : Tetromino[];
@@ -32,8 +30,8 @@ export class TetrominoBag {
     spawn() {
         let rand, tetromino;
         for (let i = 0; i < 4; i++) {
-            rand = Math.floor(Math.random() * 7);
-            tetromino = new Tetromino(SHAPES[rand]);
+            rand = Math.floor(Math.random() * Object.keys(TETROMINOES).length);
+            tetromino = new Tetromino(Object.keys(TETROMINOES)[rand]);
             //if not in history
             if (this.history.indexOf(tetromino) == -1) {
                 break;

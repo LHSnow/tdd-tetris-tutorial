@@ -7,7 +7,7 @@ export class Block {
     }
 }
 
-const TETROMINOES = {
+export const TETROMINOES = {
     'T':    ".T.\n" +
             "TTT\n" +
             "...\n",
