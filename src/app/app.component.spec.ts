@@ -1,13 +1,11 @@
 import {async, TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
-import {Board} from "./tetris/board";
 
 describe('AppComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
-                AppComponent,
-                Board
+                AppComponent
             ],
         }).compileComponents();
     }));
