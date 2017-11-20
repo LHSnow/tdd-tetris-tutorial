@@ -1,11 +1,11 @@
 import { browser, by, element } from 'protractor';
 
-export class AppPage {
+export class TetrisPage {
   navigateTo() {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  getBoard() {
+    return element(by.css('.board')).getText();
   }
 }

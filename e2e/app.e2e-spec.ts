@@ -1,14 +1,14 @@
-import { AppPage } from './app.po';
+import { TetrisPage } from './app.po';
 
-describe('tetris App', () => {
-  let page: AppPage;
+describe('The Tetris app', () => {
+  let page: TetrisPage;
 
   beforeEach(() => {
-    page = new AppPage();
+    page = new TetrisPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display the game board edges', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getBoard()).toContain('+');
   });
 });
